@@ -1,2 +1,2 @@
 # practice
-coding practice playground
+Coding practice playground 
