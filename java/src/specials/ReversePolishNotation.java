@@ -4,7 +4,6 @@ import java.util.Stack;
 
 public class ReversePolishNotation {
 
-
     public static void main(String[] args) {
         System.out.println("evalRPN(\"2\", \"1\", \"-\", 5, \"+\") = " + evalRPN(new String[] {"2", "1", "-", "5", "+"}));
     }
