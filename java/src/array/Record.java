@@ -1,15 +1,15 @@
 package array;
 
-public class Pair implements Comparable<Pair> {
+public class Record implements Comparable<Record> {
     int num;
     int count;
 
-    public Pair(int num, int count) {
+    public Record(int num, int count) {
         this.num = num;
         this.count = count;
     }
 
-    public int compareTo(Pair other) {
+    public int compareTo(Record other) {
         return this.count - other.count;
     }
 

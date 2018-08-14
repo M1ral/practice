@@ -1,17 +1,17 @@
 package array;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.TreeMap;
+import java.util.*;
 
 public class KthElement {
 
     public static void main(String[] args) {
         System.out.println("findKthLargest: " + findKthLargest(new int[]{2,3,4,1,7,0}, 3));
         System.out.println("findKthLargestHeap: " + findKthLargestHeap(new int[]{2,3,4,1,7,0}, 3));
+
+        System.out.println("findKthSmallest: " + findKthSmallest(new int[]{2,3,4,1,7,0}, 5));
         System.out.println("findKthSmallestHeap: " + findKthSmallestHeap(new int[]{2,3,4,1,7,0}, 5));
-        System.out.println("most frequent k : " + Arrays.toString(mostFrequentK(new int[]{1,1,7,2,6,5,6,7}, 2)));
+
+        System.out.println("most frequent k : " + mostFrequentK(new int[]{1,1,7,2,6,5,6,7}, 3).toString());
     }
 
     public static int findKthLargest(int[] arr, int k) {
@@ -41,6 +41,19 @@ public class KthElement {
         return q.peek();
     }
 
+    public static int findKthSmallest(int[] arr, int k) {
+        if (null == arr || arr.length == 0) {
+            return -1;
+        }
+
+        if (k < 0 || k > arr.length) {
+            return -1;
+        }
+
+        Arrays.sort(arr);
+        return arr[k-1];
+    }
+
     public static int findKthSmallestHeap(int[] arr, int k) {
         PriorityQueue<Integer> q = new PriorityQueue<Integer>();
 
@@ -57,33 +70,45 @@ public class KthElement {
         return r;
     }
 
-    public static int[] mostFrequentK(int[] a, int k) {
+    /**
+     * Find k most frequently occurring numbers in given array
+     *
+     * @param a
+     * @param k
+     * @return List of Integers
+     */
+    public static List<Integer> mostFrequentK(int[] a, int k) {
         if (null == a || a.length == 0) {
             return null;
         }
 
-        Map<Integer, Pair> treemap = new TreeMap<Integer, Pair>();
+        List<Integer> result = new ArrayList<>();
+
+        Map<Integer, Record> map = new HashMap<>();
         for (int n : a) {
-            if (treemap.containsKey(n)) {
-                treemap.get(n).incrementCount();
-            } else {
-                treemap.put(n, new Pair(n, 1));
+            map.putIfAbsent(n, new Record(n, 0));
+            map.get(n).incrementCount();
+        }
+
+        /*PriorityQueue<Record> queue = new PriorityQueue<>(new Comparator<Record>() {
+            @Override
+            public int compare(Record o1, Record o2) {
+                return o1.count - o2.count;
+            }
+        });*/
+
+        PriorityQueue<Record> queue = new PriorityQueue(); // comparator is implemented in the Record class compareTo() method
+        for (Record record : map.values()) {
+            queue.offer(record);
+            if (queue.size() > k) {
+                queue.poll();
             }
         }
 
-        int[] result = new int[k];
-        int m = 0;
-
-        for (int j : treemap.keySet()) {
-            result[m] = j;
-            if (m == k-1) {
-                break;
-            }
-            m++;
+        while (!queue.isEmpty()) {
+            result.add(queue.poll().num);
         }
 
         return result;
     }
-
-
 }
