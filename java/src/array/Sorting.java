@@ -7,7 +7,10 @@ public class Sorting {
 
     public static void main(String[] args) {
         int[] input = new int[] {1,5,3,2};
-        //bubbleSort(input);
+        bubbleSort(input);
+        System.out.println(Arrays.toString(input));
+
+        input = new int[] {1,5,3,2};
         selectionSort(input);
         System.out.println(Arrays.toString(input));
     }
