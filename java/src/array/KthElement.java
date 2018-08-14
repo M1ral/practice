@@ -5,13 +5,15 @@ import java.util.*;
 public class KthElement {
 
     public static void main(String[] args) {
-        System.out.println("findKthLargest: " + findKthLargest(new int[]{2,3,4,1,7,0}, 3));
-        System.out.println("findKthLargestHeap: " + findKthLargestHeap(new int[]{2,3,4,1,7,0}, 3));
+        System.out.println("findKthLargest: " + findKthLargest(new int[]{2, 3, 4, 1, 7, 0}, 3));
+        System.out.println("findKthLargestHeap: " + findKthLargestHeap(new int[]{2, 3, 4, 1, 7, 0}, 3));
+        System.out.println("findKthSmallest: " + findKthSmallest(new int[]{2, 3, 4, 1, 7, 0}, 5));
+        System.out.println("findKthSmallestHeap: " + findKthSmallestHeap(new int[]{2, 3, 4, 1, 7, 0}, 5));
+        System.out.println("most frequent k : " + mostFrequentK(new int[]{1, 1, 7, 2, 6, 5, 6, 7}, 3).toString());
 
-        System.out.println("findKthSmallest: " + findKthSmallest(new int[]{2,3,4,1,7,0}, 5));
-        System.out.println("findKthSmallestHeap: " + findKthSmallestHeap(new int[]{2,3,4,1,7,0}, 5));
-
-        System.out.println("most frequent k : " + mostFrequentK(new int[]{1,1,7,2,6,5,6,7}, 3).toString());
+        int[] input = new int[]{1, 1, 7, 2, 6, 5, 6, 7};
+        rotateByKElements(input, 3);
+        System.out.println("rotate by k elements : " + Arrays.toString(input));
     }
 
     public static int findKthLargest(int[] arr, int k) {
@@ -30,10 +32,10 @@ public class KthElement {
     public static int findKthLargestHeap(int[] arr, int k) {
         PriorityQueue<Integer> q = new PriorityQueue<Integer>(k);
 
-        for(int i: arr){
+        for (int i : arr) {
             q.offer(i);
 
-            if(q.size() > k){
+            if (q.size() > k) {
                 q.poll();
             }
         }
@@ -51,13 +53,13 @@ public class KthElement {
         }
 
         Arrays.sort(arr);
-        return arr[k-1];
+        return arr[k - 1];
     }
 
     public static int findKthSmallestHeap(int[] arr, int k) {
         PriorityQueue<Integer> q = new PriorityQueue<Integer>();
 
-        for(int i: arr){
+        for (int i : arr) {
             q.offer(i);
         }
 
@@ -110,5 +112,38 @@ public class KthElement {
         }
 
         return result;
+    }
+
+    /**
+     * Rotate given array by k elements
+     *
+     * @param arr
+     * @param k
+     */
+    public static void rotateByKElements(int[] arr, int k) {
+        if (null == arr || arr.length == 0) {
+            return;
+        }
+
+        if (k < 0) {
+            return;
+        }
+
+        if (k > arr.length) {
+            k = (k % arr.length);
+        }
+
+        int result[] = new int[arr.length];
+        for (int i = 0; i < k; i++) {
+            result[i] = arr[arr.length - k + i];
+        }
+
+        int j = 0;
+        for (int i = k; i < arr.length; i++) {
+            result[i] = arr[j];
+            j++;
+        }
+
+        System.arraycopy(result, 0, arr, 0, arr.length);
     }
 }
