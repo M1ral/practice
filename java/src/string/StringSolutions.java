@@ -10,6 +10,7 @@ public class StringSolutions {
         // https://www.programcreek.com/2014/05/leetcode-reverse-words-in-a-string-ii-java/
         System.out.println("reverseWords(\"the sky is blue\")" + reverseWords("the sky is blue"));
         System.out.println("are isomorphic : " + areIsomorphic("ab","aa"));
+        System.out.println("is palindrome : " + isPalindrome("0P"));
     }
 
     /**
@@ -21,7 +22,7 @@ public class StringSolutions {
      * @param input
      * @return
      */
-    private static String reverseWords(String input) {
+    public static String reverseWords(String input) {
         if (null == input || input.isEmpty()) {
             return null;
         }
@@ -39,7 +40,7 @@ public class StringSolutions {
         return output.toString();
     }
 
-    private static boolean areIsomorphic(String s, String t) {
+    public static boolean areIsomorphic(String s, String t) {
         if (null == s || null == t) {
             return false;
         }
@@ -69,6 +70,39 @@ public class StringSolutions {
                 }
             }
         }
+        return true;
+    }
+
+    public static boolean isPalindrome(String s) {
+        if (null == s || s.isEmpty()) {
+            return true;
+        }
+
+        int i = 0;
+        int j = s.length() - 1;
+
+        while (i < j) {
+            // ignore non-alphabet characters
+            char si = Character.toLowerCase(s.charAt(i));
+            if (!(Character.isDigit(si) || Character.isLetter(si))) {
+                i++;
+                continue;
+            }
+
+            char sj = Character.toLowerCase(s.charAt(j));
+            if (!(Character.isDigit(sj) || Character.isLetter(sj))) {
+                j--;
+                continue;
+            }
+
+            if (si != sj) {
+                return false;
+            }
+
+            i++;
+            j--;
+        }
+
         return true;
     }
 }
