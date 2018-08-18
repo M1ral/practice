@@ -21,6 +21,7 @@ public class ListNode {
             sb.append(n.val).append("->");
             n = n.next;
         }
+        sb.append("NULL");
         return sb.toString();
     }
 }

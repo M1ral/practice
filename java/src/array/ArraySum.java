@@ -6,7 +6,8 @@ public class ArraySum {
 
     public static void main(String[] args) {
         System.out.println("findTwoSum : " + Arrays.toString(findTwoSum(new int[]{2,7,6,8,9,10}, 9)));
-        System.out.println("findThreeSum : " + findThreeSum(new int[]{-1, 0, 1, 2, -1, -1, 1, 0}));
+        System.out.println("findThreeSum : " + findThreeSum(new int[]{-1,0,1,2,-1,-4}));
+        System.out.println("findThreeSum : " + threeSum(new int[]{1,2,-2,-1}));
     }
 
     public static int[] findTwoSum(int[] arr, int target) {
@@ -62,5 +63,52 @@ public class ArraySum {
         }
 
         return result;
+    }
+
+    public static List<List<Integer>> threeSum(int[] nums) {
+        if (null == nums || nums.length == 0) {
+            return null;
+        }
+
+        Set<List<Integer>> result = new HashSet<>();
+
+        int index = 1;
+        for (int n : nums) {
+            List<Integer> twoSumList = findTwoSum(nums, -n, index);
+            index++;
+            if (null == twoSumList) {
+                continue;
+            }
+            twoSumList.add(n);
+            Collections.sort(twoSumList);
+            result.add(twoSumList);
+        }
+
+        return new ArrayList(result);
+    }
+
+    private static List<Integer> findTwoSum(int[] nums, int target, int currentNumIndex) {
+        if (null == nums || nums.length == 0) {
+            return null;
+        }
+
+        int i = 1;
+        Map<Integer, Integer> map = new HashMap();
+
+        for (int n : nums) {
+            if (currentNumIndex == i) {
+                i++;
+                continue;
+            }
+
+            if (map.containsKey(n)) {
+                return new ArrayList<Integer>(Arrays.asList(n, map.get(n)));
+            } else {
+                map.put(target - n, n);
+            }
+            i++;
+        }
+
+        return null;
     }
 }
