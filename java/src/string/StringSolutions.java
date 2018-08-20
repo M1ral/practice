@@ -10,8 +10,10 @@ public class StringSolutions {
         // https://www.programcreek.com/2014/05/leetcode-reverse-words-in-a-string-ii-java/
         System.out.println("reverseWords(\"the sky is blue\")" + reverseWords("the sky is blue"));
         System.out.println("reverseWords(\"the sky is blue\")" + reverseWords(" 1"));
-        System.out.println("are isomorphic : " + areIsomorphic("ab","aa"));
+        System.out.println("are isomorphic : " + areIsomorphic("ab", "aa"));
         System.out.println("is palindrome : " + isPalindrome("0P"));
+        System.out.println("isValid(\"({})\") : " + isValidParenthesis("({})"));
+        System.out.println("isValid(\"({})\") : " + isValidParenthesis("({}]"));
     }
 
     /**
@@ -112,5 +114,40 @@ public class StringSolutions {
         }
 
         return true;
+    }
+
+    /**
+     * Check if given string has valid parenthesis
+     *
+     * @param s
+     * @return boolean
+     */
+    public static boolean isValidParenthesis(String s) {
+        if (null == s || s.isEmpty()) {
+            return true;
+        }
+
+        String openBrackets = "([{";
+        Stack<Character> stack = new Stack();
+        char[] cArr = s.toCharArray();
+
+        for (char c : cArr) {
+            if (openBrackets.indexOf(c) > -1) {
+                stack.push(c);
+            } else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                if (c == ')') {
+                    if (stack.pop() != '(') return false;
+                } else if (c == '}') {
+                    if (stack.pop() != '{') return false;
+                } else if (c == ']') {
+                    if (stack.pop() != '[') return false;
+                }
+            }
+        }
+
+        return stack.isEmpty();
     }
 }

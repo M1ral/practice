@@ -103,5 +103,3 @@ public class RotatingArray {
         return false;
     }
 }
-
-
