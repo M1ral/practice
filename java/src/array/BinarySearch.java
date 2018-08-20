@@ -35,6 +35,16 @@ public class BinarySearch {
         return false;
     }
 
+    /**
+     * Recursive binary search
+     *
+     * @param n
+     * @param a
+     * @param s
+     * @param e
+     * @param i
+     * @return
+     */
     public static boolean search(int n, int[] a, int s, int e, int i) {
         if (null == a || a.length == 0) {
             return false;

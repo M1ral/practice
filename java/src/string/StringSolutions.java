@@ -9,6 +9,7 @@ public class StringSolutions {
         // reverse words in a string
         // https://www.programcreek.com/2014/05/leetcode-reverse-words-in-a-string-ii-java/
         System.out.println("reverseWords(\"the sky is blue\")" + reverseWords("the sky is blue"));
+        System.out.println("reverseWords(\"the sky is blue\")" + reverseWords(" 1"));
         System.out.println("are isomorphic : " + areIsomorphic("ab","aa"));
         System.out.println("is palindrome : " + isPalindrome("0P"));
     }
@@ -31,13 +32,20 @@ public class StringSolutions {
         StringBuilder output = new StringBuilder();
 
         for (int i = words.length - 1; i >= 0; i--) {
-            output.append(words[i]);
+            String word = words[i].trim();
+            if (word.isEmpty()) {
+                continue;
+            }
+
+            output.append(word);
+
             if (i > 0) {
                 output.append(" ");
             }
         }
 
-        return output.toString();
+        String o = output.toString().trim();
+        return output.toString().trim();
     }
 
     public static boolean areIsomorphic(String s, String t) {

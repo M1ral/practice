@@ -17,6 +17,7 @@ public class MedianSortedArrays {
             return getMedian(nums1);
         }
 
+        // 1. merge two sorted arrays
         int[] result = new int[nums1.length + nums2.length];
         int i = nums1.length - 1;
         int j = nums2.length - 1;
@@ -45,6 +46,7 @@ public class MedianSortedArrays {
             k--;
         }
 
+        // 2. get median of the merged sorted array
         return getMedian(result);
     }
 

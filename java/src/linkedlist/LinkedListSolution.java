@@ -3,9 +3,13 @@ package linkedlist;
 import linkedlist.helper.ListNodeHelper;
 import linkedlist.pojo.ListNode;
 
+import java.util.Date;
 import java.util.Stack;
 
 public class LinkedListSolution {
+
+    private static long START;
+    private static long END;
 
     public static void main(String[] args) {
 
@@ -25,12 +29,21 @@ public class LinkedListSolution {
         System.out.println("reverse(node) = " + node);
 
         // recursive reverse
-        node = ListNodeHelper.generateLinkedList(new int[]{1,2,3,4,5});
+        START = new Date().getTime();
+        node = ListNodeHelper.generateLinkedList(new int[]{1,2,3});
         reverseRecursive(node);
-        System.out.println("recursive reverse(node) = " + node);
+        END = new Date().getTime();
+        System.out.println("recursive reverse(node) = " + node + ", time : " + (END - START));
+
+        // rec reverse try dev
+        START = new Date().getTime();
+        ListNode n1 = ListNodeHelper.generateLinkedList(new int[]{1,2,3});
+        System.out.println("rec rev list : " + recRev(n1));
+        END = new Date().getTime();
+        System.out.println("rec rev time : " + (END - START));
 
         // merge 2 sorted linked lists
-        ListNode n1 = ListNodeHelper.generateLinkedList(new int[]{1,4,7});
+        n1 = ListNodeHelper.generateLinkedList(new int[]{1,4,7});
         ListNode n2 = ListNodeHelper.generateLinkedList(new int[]{2,5,9,10});
         System.out.println("merge 2 sorted : " + mergeSorted(n1, n2));
 
@@ -59,6 +72,19 @@ public class LinkedListSolution {
         n2 = ListNodeHelper.generateLinkedList(new int[]{1});
         System.out.println("intersection node : " + getIntersectionNode(n1, n2));
 
+        // swap 2 linkedlist nodes without swapping data
+        n1 = ListNodeHelper.generateLinkedList(new int[]{2});
+        n2 = ListNodeHelper.generateLinkedList(new int[]{9});
+        n3 = ListNodeHelper.generateLinkedList(new int[]{2,1,4,5,3,7,8,9});
+        System.out.println("swap nodes = " + swap(n3, n1, n2));
+
+        // check palindrome
+        n1 = ListNodeHelper.generateLinkedList(new int[]{2,4,5,3,4,2});
+        System.out.println("check palindrome : " + isPalindrome(n1));
+
+        // odd even list
+        n1 = ListNodeHelper.generateLinkedList(new int[]{1,2,3,4,5,6,7,8,9});
+        System.out.println("odd even list : " + oddEvenList(n1));
     }
 
     /**
@@ -118,27 +144,22 @@ public class LinkedListSolution {
     /**
      * Reverse list recursively
      *
-     * @param list
+     * @param head
      * @return node {@link ListNode}
      */
-    private static ListNode reverseRecursive(ListNode list) {
-        if (list == null) return null; // first question
+    private static ListNode reverseRecursive(ListNode head) {
+        if (head == null || head.next == null) {
+            return null; // first question
+        }
 
-        if (list.next == null) return list; // second question
-
-        // third question - in Lisp this is easy, but we don't have cons
-        // so we grab the second element (which will be the last after we reverse it)
-
-        ListNode secondElem = list.next;
-
-        // bug fix - need to unlink list from the rest or you will get a cycle
-        list.next = null;
-
+        // we grab the next element (which will be the last after we reverse it)
+        ListNode next = head.next;
+        // unlink list from the rest or you will get a cycle
+        head.next = null;
         // then we reverse everything from the second element on
-        ListNode reverseRest = reverseRecursive(secondElem);
-
+        ListNode reverseRest = reverseRecursive(next);
         // then we join the two lists
-        secondElem.next = list;
+        next.next = head;
 
         return reverseRest;
     }
@@ -497,5 +518,169 @@ public class LinkedListSolution {
             }
         }
         return prev; // last matched node
+    }
+
+    /**
+     * Swap given 2 nodes WITHOUT swapping data in the source list
+     *
+     * @param head
+     * @param a
+     * @param b
+     */
+    private static ListNode swap(ListNode head, ListNode a, ListNode b) {
+        if (null == a || null == b) {
+            return null;
+        }
+        if (a.val == b.val) {
+            return null;
+        }
+        // return when...
+        // a is not present
+        // b is not present
+        // a and b are same
+
+        // continue when...
+        // a is the first node
+        // a is the last node
+        // b is the first node
+        // b is the last node
+
+        ListNode result = head;
+        ListNode current = head;
+        ListNode currentA = head;
+        ListNode currentB = head;
+        ListNode prev = null;
+        ListNode prevA = null;
+        ListNode prevB = null;
+        boolean hasA = false;
+        boolean hasB = false;
+
+        // find previousA and currentA, previousB and currentB
+        while (null != current) {
+            if (!hasA && a.val == current.val) {
+                prevA = prev;
+                currentA = current;
+                hasA = true; // found node a
+            } else if (!hasB && b.val == current.val) {
+                prevB = prev;
+                currentB = current;
+                hasB = true; // found node b
+            }
+
+            if (hasA && hasB) {
+                break; // if we found both nodes, exit the loop
+            }
+            // next iteration
+            prev = current;
+            current = current.next;
+        }
+
+        // if either of the node is not present, return null
+        if (!hasA || !hasB) {
+            return null;
+        }
+
+        // Swap A and B
+
+        // if a is not the head
+        if (null != prevA) {
+            prevA.next = currentB;
+        } else {
+            result = currentB;
+        }
+
+        // if b is not the head
+        if (null != prevB) {
+            prevB.next = currentA;
+        } else {
+            result = currentA;
+        }
+
+        // swap next elements
+        ListNode temp = currentA.next;
+        currentA.next = currentB.next;
+        currentB.next = temp;
+
+        return result;
+    }
+
+    /**
+     * Check if given linked list represents a palindrome number
+     * @param head
+     * @return boolean
+     */
+    public static boolean isPalindrome(ListNode head) {
+        if (null == head || null == head.next) {
+            return true;
+        }
+
+        ListNode fast = head;
+        ListNode slow = head;
+
+        while (null != fast && null != fast.next) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        Stack<Integer> stack = new Stack();
+        fast = head;
+        while (null != slow) {
+            stack.push(slow.val);
+            slow = slow.next;
+        }
+
+        while (!stack.isEmpty()) {
+            if (stack.pop() != fast.val) {
+                return false;
+            }
+            fast = fast.next;
+        }
+
+        return true;
+    }
+
+    /**
+     * Join odd positioned nodes to even nodes
+     *
+     * @param head
+     * @return ListNode
+     */
+    public static ListNode oddEvenList(ListNode head) {
+        if (null == head || null == head.next) {
+            return head;
+        }
+
+        ListNode result = head;
+        ListNode currentOdd = head;
+        ListNode currentEven = head.next;
+        ListNode prevOdd = currentOdd;
+        ListNode prevEven = currentEven;
+        ListNode couplingNode = currentEven;
+
+        while (null != currentOdd && null != currentOdd.next && null != currentEven && null != currentEven.next) {
+            // odd
+            currentOdd = currentOdd.next.next;
+            prevOdd.next = currentOdd;
+            prevOdd = currentOdd;
+            // even
+            currentEven = currentEven.next.next;
+            prevEven.next = currentEven;
+            prevEven = currentEven;
+        }
+
+        prevOdd.next = couplingNode;
+        return result;
+    }
+
+    private static ListNode recRev(ListNode head) {
+        if (null == head || null == head.next) {
+            return head;
+        }
+
+        ListNode n = recRev(head.next);
+        head.next.next = head; // takes a while to execute
+        head.next = null;
+
+        return n;
     }
 }

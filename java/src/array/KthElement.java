@@ -9,7 +9,10 @@ public class KthElement {
         System.out.println("findKthLargestHeap: " + findKthLargestHeap(new int[]{2, 3, 4, 1, 7, 0}, 3));
         System.out.println("findKthSmallest: " + findKthSmallest(new int[]{2, 3, 4, 1, 7, 0}, 5));
         System.out.println("findKthSmallestHeap: " + findKthSmallestHeap(new int[]{2, 3, 4, 1, 7, 0}, 5));
-        System.out.println("most frequent k : " + mostFrequentK(new int[]{1, 1, 7, 2, 6, 5, 6, 7}, 3).toString());
+
+        // To use the utility class NRecord
+        KthElement ke = new KthElement();
+        System.out.println("most frequent k : " + ke.mostFrequentK(new int[]{1, 1, 7, 2, 6, 5, 6, 7}, 3).toString());
 
         int[] input = new int[]{1, 1, 7, 2, 6, 5, 6, 7};
         rotateByKElements(input, 3);
@@ -79,16 +82,16 @@ public class KthElement {
      * @param k
      * @return List of Integers
      */
-    public static List<Integer> mostFrequentK(int[] a, int k) {
+    public List<Integer> mostFrequentK(int[] a, int k) {
         if (null == a || a.length == 0) {
             return null;
         }
 
         List<Integer> result = new ArrayList<>();
 
-        Map<Integer, Record> map = new HashMap<>();
+        Map<Integer, NRecord> map = new HashMap<>();
         for (int n : a) {
-            map.putIfAbsent(n, new Record(n, 0));
+            map.putIfAbsent(n, new NRecord(n, 0));
             map.get(n).incrementCount();
         }
 
@@ -99,14 +102,15 @@ public class KthElement {
             }
         });*/
 
-        PriorityQueue<Record> queue = new PriorityQueue(); // comparator is implemented in the Record class compareTo() method
-        for (Record record : map.values()) {
+        PriorityQueue<NRecord> queue = new PriorityQueue(); // comparator is implemented in the Record class compareTo() method
+        for (NRecord record : map.values()) {
             queue.offer(record);
             if (queue.size() > k) {
                 queue.poll();
             }
         }
 
+        // queue holds the result
         while (!queue.isEmpty()) {
             result.add(queue.poll().num);
         }
@@ -145,5 +149,24 @@ public class KthElement {
         }
 
         System.arraycopy(result, 0, arr, 0, arr.length);
+    }
+}
+
+// utility class
+class NRecord implements Comparable<NRecord> {
+    public int num;
+    public int count;
+
+    public void incrementCount() {
+        this.count++;
+    }
+
+    public int compareTo(NRecord other) {
+        return this.count - other.count;
+    }
+
+    public NRecord(int num, int count) {
+        this.num = num;
+        this.count = count;
     }
 }
