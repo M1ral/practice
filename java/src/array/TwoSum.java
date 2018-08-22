@@ -29,7 +29,7 @@ public class TwoSum {
         Map<Integer, Integer> dataMap = new HashMap<>();
         int i = 0;
 
-        for(int n : data) {
+        for (int n : data) {
             if (dataMap.containsKey(n)) {
                 return true;
             } else {
