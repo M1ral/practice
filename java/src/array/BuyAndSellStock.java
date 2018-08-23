@@ -17,24 +17,19 @@ public class BuyAndSellStock {
      */
     public static int maxProfitByBuySellOnce(int[] stockPrices) {
         if (null == stockPrices || stockPrices.length < 2) {
-            return -1;
+            return 0;
         }
 
-        int minPrice = stockPrices[0]; // keep track of min price during each iteration
+        int minPriceSoFar = stockPrices[0]; // keep track of min price during each iteration
         int currentProfit = 0; // calculate currentProfit during each iteration
-        int maxProfit = Integer.MIN_VALUE; // maxProfit to return
+        int maxProfit = Integer.MIN_VALUE;
 
-        for (int i = 1; i < stockPrices.length; i++) {
-            // if current stock price is greater than minimum price, calculate the profit
-            if (stockPrices[i] > minPrice) {
-                currentProfit = stockPrices[i] - minPrice;
-                if (currentProfit > maxProfit) {
-                    maxProfit = currentProfit; // update maxProfit
-                }
-            } else {
-                minPrice = stockPrices[i]; // update minPrice
-            }
+        for (int stockPrice : stockPrices) {
+            minPriceSoFar = Math.min(minPriceSoFar, stockPrice); // keep track of minSoFar in the iteration
+            currentProfit = stockPrice - minPriceSoFar; // calculate currentProfit based on minSoFar and current stockPrice
+            maxProfit = Math.max(currentProfit, maxProfit);
         }
+
         return maxProfit;
     }
 
@@ -71,6 +66,7 @@ public class BuyAndSellStock {
             maxSoFar = Math.max(maxSoFar, stockPrices[j]);
             profit = Math.max(profit, (maxSoFar - stockPrices[j]) + F[j]);
         }
+
         return profit;
     }
 }
