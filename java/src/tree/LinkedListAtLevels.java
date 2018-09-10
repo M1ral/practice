@@ -94,7 +94,7 @@ public class LinkedListAtLevels {
      }
 
     // print list of LinkedList items
-    private static void printLists(List<LinkedList> lists) {
+    public static void printLists(List<LinkedList> lists) {
         if (null == lists || lists.isEmpty()) {
             System.out.println("EMPTY LIST!");
         }
