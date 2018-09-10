@@ -1,5 +1,8 @@
 package tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Depth {
 
     public static void main(String[] args) {
@@ -42,5 +45,63 @@ public class Depth {
         }
 
         return 1 + Math.min(getHeight(root.left), getHeight(root.right));
+    }
+
+    /**
+     * min depth recursive
+     *
+     * @param root
+     * @return int
+     */
+    public int minDepthRecurse(TreeNode root) {
+        if (null == root) {
+            return 0;
+        }
+
+        int leftDepth = minDepth(root.left);
+        int rightDepth = minDepth(root.right);
+
+        if (leftDepth == 0) {
+            return 1 + rightDepth;
+        }
+        if (rightDepth == 0) {
+            return 1 + leftDepth;
+        }
+        return 1 + Math.min(minDepth(root.left), minDepth(root.right));
+    }
+
+    /**
+     * min depth iteratively
+     *
+     * @param root
+     * @return int
+     */
+    public int minDepthIterative(TreeNode root) {
+        if (null == root) {
+            return 0;
+        }
+
+        Queue<TreeNode> queue = new LinkedList();
+        queue.add(root);
+        int depth = 1;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+
+            while (size != 0) {
+                TreeNode current = queue.remove();
+                if (null == current.left && null == current.right) {
+                    return depth; // return depth as soon as we encounter a leaf node
+                }
+                if (null != current.left)
+                    queue.add(current.left);
+                if (null != current.right)
+                    queue.add(current.right);
+
+                size--;
+            }
+            depth++;
+        }
+        return depth;
     }
 }
