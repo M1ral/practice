@@ -72,7 +72,7 @@ public class LinkedListSolution {
         n2 = ListNodeHelper.generateLinkedList(new int[]{1});
         System.out.println("intersection node : " + getIntersectionNode(n1, n2));
 
-        // swap 2 linkedlist nodes without swapping data
+        // swap 2 linkedlist nodes without swapping val
         n1 = ListNodeHelper.generateLinkedList(new int[]{2});
         n2 = ListNodeHelper.generateLinkedList(new int[]{9});
         n3 = ListNodeHelper.generateLinkedList(new int[]{2,1,4,5,3,7,8,9});
@@ -521,7 +521,7 @@ public class LinkedListSolution {
     }
 
     /**
-     * Swap given 2 nodes WITHOUT swapping data in the source list
+     * Swap given 2 nodes WITHOUT swapping val in the source list
      *
      * @param head
      * @param a

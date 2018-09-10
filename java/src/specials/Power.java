@@ -33,17 +33,31 @@ public class Power {
         return result;
     }
 
+    /**
+     * Calculate power in recursive manner
+     * x^5 = x^2 * x^2 * x  (number of steps are equal to number of divisions of n by 2 that reaches to zero)
+     * Hence, time complexity = log  n
+     *                              2
+     * @param x
+     * @param n
+     * @return
+     */
     private static double rpow(int x, int n) {
         if (n == 0) {
             return 1;
-        } if (n == 1) {
+        }
+        if (n == 1) {
             return x;
         }
-        double temp = rpow(x, n/2);
-        if (n % 2 == 0) {
-            return temp * temp;
+
+        double half = rpow(x, n/2);
+
+        if (n % 2 == 0) { // even
+            return half * half;
+        } else if (n > 0) { // odd - positive
+            return half * half * x;
         } else {
-            return x * temp * temp;
+            return half * half / x;
         }
     }
 }
