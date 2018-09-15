@@ -5,8 +5,9 @@ import java.util.*;
 public class PathSum {
 
     public static void main(String[] args) {
-        System.out.println("hasPathSum(Tree.createDummyTree(), 10) = " + hasPathSumIter(Tree.createDummyTree(), 9));
-        System.out.println("hasPathSumRec(Tree.createDummyTree(), 10) = " + hasPathSumRec(Tree.createDummyTree(), 9));
+        System.out.println("hasPathSum(Tree.createDummyTree(), 10) = " + hasPathSumRootToLeafIter(Tree.createDummyTree(), 9));
+        System.out.println("hasPathSumRootToLeafRec(Tree.createDummyTree(), 10) = " + hasPathSumRootToLeafRec(Tree.createDummyTree(), 9));
+        System.out.println("pathSum3(Tree.createDummyTree(), 5) = " + pathSum3(Tree.createDummyTree(), 5));
     }
 
     /**
@@ -16,7 +17,7 @@ public class PathSum {
      * @param sum
      * @return boolean
      */
-    public static boolean hasPathSumRec(TreeNode root, int sum) {
+    public static boolean hasPathSumRootToLeafRec(TreeNode root, int sum) {
         if (null == root) {
             return false;
         }
@@ -26,8 +27,8 @@ public class PathSum {
 
         // excellent solution:
         // pass on sum - root.val to only look for that number at the end when we reach to leaf
-        return hasPathSumRec(root.left, sum - root.val)
-                || hasPathSumRec(root.right, sum - root.val);
+        return hasPathSumRootToLeafRec(root.left, sum - root.val)
+                || hasPathSumRootToLeafRec(root.right, sum - root.val);
     }
 
     /**
@@ -37,7 +38,7 @@ public class PathSum {
      * @param sum
      * @return boolean
      */
-    public static boolean hasPathSumIter(TreeNode root, int sum) {
+    public static boolean hasPathSumRootToLeafIter(TreeNode root, int sum) {
         if (null == root) {
             return false;
         }
@@ -108,5 +109,30 @@ public class PathSum {
         pathSum(root.right, lists, sum - root.val, stack);
 
         stack.pop();
+    }
+
+    /**
+    * leetcode - path sum 3
+    * https://leetcode.com/problems/path-sum-iii/discuss/91878/17-ms-O(n)-java-Prefix-sum-method
+    * https://leetcode.com/problems/path-sum-iii/description/
+    */
+    public static int pathSum3(TreeNode root, int sum) {
+        HashMap<Integer, Integer> preSum = new HashMap();
+        preSum.put(0,1);
+        return helper(root, 0, sum, preSum);
+    }
+
+    public static int helper(TreeNode root, int currSum, int target, HashMap<Integer, Integer> preSum) {
+        if (root == null) {
+            return 0;
+        }
+
+        currSum += root.val;
+        int res = preSum.getOrDefault(currSum - target, 0);
+        preSum.put(currSum, preSum.getOrDefault(currSum, 0) + 1);
+
+        res += helper(root.left, currSum, target, preSum) + helper(root.right, currSum, target, preSum);
+        preSum.put(currSum, preSum.get(currSum) - 1);
+        return res;
     }
 }

@@ -195,7 +195,7 @@ public class LinkedListSolution {
     }
 
     /**
-     * Merge two sorted linked lists
+     * MergeTrees two sorted linked lists
      *
      * @param n1
      * @param n2
@@ -253,7 +253,7 @@ public class LinkedListSolution {
     }
 
     /**
-     * Merge 2 sorted linkedlists in place
+     * MergeTrees 2 sorted linkedlists in place
      *
      * @param n1
      * @param n2
@@ -306,7 +306,7 @@ public class LinkedListSolution {
     }
 
     /**
-     * Merge given k sorted linked lists
+     * MergeTrees given k sorted linked lists
      *
      * @param lists
      * @return
