@@ -41,12 +41,10 @@ public class LinkedListAtLevels {
             return;
         }
 
-        LinkedList<Integer> list = null;
         if (lists.size() == level) {
             lists.add(level, new LinkedList());
         }
-
-        list = lists.get(level);
+        LinkedList<Integer> list = lists.get(level);
         list.add(treeNode.val);
 
         createLeveledList(treeNode.left, lists, level + 1);

@@ -2,6 +2,20 @@ package tree;
 
 public class Invert {
 
+    /**
+     * Invert tree
+     *
+     * from:
+     *      1
+     *    2   3
+     *
+     * to:
+     *      1
+     *    3   2
+     *
+     * @param root
+     * @return TreeNode
+     */
     public TreeNode invertTree(TreeNode root) {
         if (root != null) {
             helper(root);

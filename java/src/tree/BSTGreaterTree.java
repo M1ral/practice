@@ -2,6 +2,7 @@ package tree;
 
 public class BSTGreaterTree {
 
+
     public TreeNode convertBST(TreeNode root) {
         if (null == root) {
             return null;
@@ -22,6 +23,23 @@ public class BSTGreaterTree {
         traverse(root.left);
     }
 
+
+    /**
+     * Input: The root of a Binary Search Tree like this:
+     *               5
+     *             /   \
+     *            2     13
+     *
+     * Output: The root of a Greater Tree like this:
+     *              18
+     *             /   \
+     *           20     13
+     *
+     *
+     * Returns the greater tree of the BST tree
+     * @param root
+     * @param sum
+     */
     public void reverseInOrder(TreeNode root, int[] sum) {
         if (null == root) {
             return;

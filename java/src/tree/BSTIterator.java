@@ -6,7 +6,6 @@ import java.util.Stack;
  * BST Iterator for BST Tree
  *
  * Perform inorder traversal underneath and maintain nodes in the stack
- *
  */
 public class BSTIterator {
 

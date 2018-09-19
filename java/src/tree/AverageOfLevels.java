@@ -7,13 +7,23 @@ import java.util.Queue;
 
 public class AverageOfLevels {
 
+    public static void main(String[] args) {
+        System.out.println("---------- ITERATIVE -----------");
+        List<Double> avg = averageOfLevels(Tree.createDummyTree());
+        avg.forEach(System.out::println);
+
+        System.out.println("---------- RECURSIVE -----------");
+        avg = averageOfLevelsIter(Tree.createDummyTree());
+        avg.forEach(System.out::println);
+    }
+
     /**
      * Return the list of average values for each levels of tree
      *
      * @param root
      * @return list
      */
-    public List<Double> averageOfLevels(TreeNode root) {
+    public static List<Double> averageOfLevels(TreeNode root) {
         List<Double> list = new ArrayList();
         if (null == root) {
             return list;
@@ -46,4 +56,57 @@ public class AverageOfLevels {
         }
         return list;
     }
+
+    /**
+     * Return the list of avg values per each level of the tree
+     *
+     * @param root
+     * @return List
+     */
+    public static List<Double> averageOfLevelsIter(TreeNode root) {
+        List<Double> result = new ArrayList<>();
+        if (null == root) {
+            return result;
+        }
+        List<LevelData> data = new ArrayList<>();
+        traverse(root, data, 0);
+
+        for (int i = 0; i < data.size(); i++) {
+            result.add(i, data.get(i).sum / data.get(i).numElements);
+        }
+
+        return result;
+    }
+
+    /**
+     * Recursively traverse the tree and populate the List of LevelData that has
+     * sum of elements per level and total number of elements for each level
+     *
+     * @param root
+     * @param data
+     * @param level
+     */
+    public static void traverse(TreeNode root, List<LevelData> data, int level) {
+        if (null == root) {
+            return;
+        }
+
+        if (level == data.size()) {
+            data.add(level, new LevelData());
+        }
+        data.get(level).sum += root.val;
+        data.get(level).numElements++;
+
+        traverse(root.left, data, level + 1);
+        traverse(root.right, data, level + 1);
+    }
+}
+
+/**
+ * Helper class to maintain Sum of values and number of elements per level
+ */
+class LevelData {
+    public int level;
+    public int numElements;
+    public double sum;
 }

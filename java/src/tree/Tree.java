@@ -59,6 +59,40 @@ public class Tree {
     }
 
     /**
+     * Create BST from array iteratively
+     *
+     */
+
+    public static TreeNode createBSTIteratively(int[] arr) {
+        if (null == arr || arr.length == 0) {
+            return null;
+        }
+
+        int start = 0;
+        int end = arr.length - 1;
+        int mid = start + end / 2;
+        TreeNode prev = new TreeNode(arr[mid]);
+        TreeNode current = null;
+
+        while (end > start) {
+
+            int val = arr[mid];
+            current = new TreeNode(val);
+
+            if (val < prev.val) {
+                prev.left = current;
+                end = mid - 1;
+            } else if (val > prev.val) {
+                prev.right = current;
+                start = mid + 1;
+            }
+            prev = current;
+        }
+
+        return null;
+    }
+
+    /**
      * Check whether given tree is a binary search tree
      * Uses inorder traversal technique where we always traverse the next element in
      * the binary search tree
@@ -97,7 +131,7 @@ public class Tree {
 
     /**
      * Flatten the tree as a linked list (in-place)
-     *   1
+     *     1
      *    / \
      *   2   5
      *  / \   \
