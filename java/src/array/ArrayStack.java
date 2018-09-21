@@ -41,7 +41,7 @@ public class ArrayStack {
 
     public String toString() {
         if (isEmpty()) {
-            return "Empty Stack, Do some popping before!";
+            return "Empty Stack, give some push!";
         }
 
         StringBuilder sb = new StringBuilder();

@@ -114,8 +114,8 @@ public class Facebook {
         // 7 8 9
 
         // 1. copy first row of matrix to aux
-        for (int i = 0; i < N; i++) {
-            aux[0][i] = matrix[0][i];
+        for (int j = 0; j < N; j++) {
+            aux[0][j] = matrix[0][j];
         }
         // after 1,
         // 1 2 3

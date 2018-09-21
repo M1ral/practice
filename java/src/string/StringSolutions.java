@@ -9,15 +9,17 @@ public class StringSolutions {
         // reverse words in a string
         // https://www.programcreek.com/2014/05/leetcode-reverse-words-in-a-string-ii-java/
         System.out.println("reverseWords(\"the sky is blue\")" + reverseWords("the sky is blue"));
-        System.out.println("reverseWords(\"the sky is blue\")" + reverseWords(" 1"));
+        System.out.println("reverseWords(\" 1\")" + reverseWords(" 1"));
         System.out.println("are isomorphic : " + areIsomorphic("ab", "aa"));
         System.out.println("is palindrome : " + isPalindrome("0P"));
         System.out.println("isValid(\"({})\") : " + isValidParenthesis("({})"));
-        System.out.println("isValid(\"({})\") : " + isValidParenthesis("({}]"));
+        System.out.println("isValid(\"({}]\") : " + isValidParenthesis("({}]"));
         System.out.println("lengthOfLongestSubstring(\"abcc\") = " + lengthOfLongestSubstring("abcc"));
+        System.out.println("lengthOfLongestSubstring(\"abcabcd\") = " + lengthOfLongestSubstring("abcabcd"));
         System.out.println("longestCommonPrefix(new String[]{\"leet\", \"leetcode\", \"lee\"}) = " +
                 longestCommonPrefix(new String[]{"leet", "leetcode", "le", "length", "long", "legal"}));
         System.out.println("strIndexOf(\"miral\", \"ir\") = " + strIndexOf("miral", "ir"));
+        System.out.println("compress(\"aabcccdde\") = " + compress("aabcccdde"));
     }
 
     /**
@@ -50,7 +52,6 @@ public class StringSolutions {
             }
         }
 
-        String o = output.toString().trim();
         return output.toString().trim();
     }
 
@@ -145,7 +146,7 @@ public class StringSolutions {
         }
 
         String openBrackets = "([{";
-        Stack<Character> stack = new Stack();
+        Deque<Character> stack = new ArrayDeque<>();
         char[] cArr = s.toCharArray();
 
         for (char c : cArr) {
@@ -317,5 +318,38 @@ public class StringSolutions {
         }
 
         return result;
+    }
+
+    /**
+     * Compress given String
+     * input: aabcccdde
+     * output: a2b1c3d2e1
+     *
+     * @param input
+     * @return String
+     */
+    public static String compress(String input) {
+        if (null == input || input.isEmpty()) {
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        int count = 1;
+        char previous = input.charAt(0);
+        char current = input.charAt(0);
+
+        for (int i = 1; i < input.length(); i++) {
+            current = input.charAt(i);
+            if (previous == current) {
+                count++;
+            } else {
+                sb.append(previous).append(count);
+                count = 1;
+                previous = current;
+            }
+        }
+
+        sb.append(current).append(count);
+        return sb.toString();
     }
 }

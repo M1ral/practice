@@ -4,7 +4,7 @@ public class BinarySearch {
 
     public static void main(String[] args) {
         System.out.println("binary search: " + binarySearch(5, new int[]{1,3,5,7,9,10,14,18,80}));
-        System.out.println("recursive search: " + search(5, new int[]{1,3,5,7,9,10,14,18,80}, 0, 9, 0));
+        System.out.println("recursive search: " + search(5, new int[]{1,3,5,7,9,10,14,18,80}, 0, 100, 0));
 
     }
 
@@ -43,14 +43,20 @@ public class BinarySearch {
      * @param s
      * @param e
      * @param i
-     * @return
+     * @return boolean
      */
     public static boolean search(int n, int[] a, int s, int e, int i) {
         if (null == a || a.length == 0) {
             return false;
         }
+        if (s > e) {
+            return false;
+        }
 
         int m = (s + e) / 2;
+        if (m > a.length) {
+            return false;
+        }
         int p = a[m];
         i++;
         if (n < p) {
