@@ -15,7 +15,7 @@ import java.util.Arrays;
  */
 public class PlusOne {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(plusOne(new int[] {2,9})));
+        System.out.println(Arrays.toString(plusOne(new int[] {9,9})));
     }
 
     public static int[] plusOne(int[] digits) {
