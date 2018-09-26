@@ -1,4 +1,4 @@
-package dynamicpogramming;
+package matrix;
 
 import java.util.Arrays;
 

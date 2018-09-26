@@ -20,6 +20,7 @@ public class StringSolutions {
                 longestCommonPrefix(new String[]{"leet", "leetcode", "le", "length", "long", "legal"}));
         System.out.println("strIndexOf(\"miral\", \"ir\") = " + strIndexOf("miral", "ir"));
         System.out.println("compress(\"aabcccdde\") = " + compress("aabcccdde"));
+        System.out.println("reverseVowels(\"ppddffgghh\") = " + reverseVowels("ppddffgghh"));
     }
 
     /**
@@ -351,5 +352,43 @@ public class StringSolutions {
 
         sb.append(current).append(count);
         return sb.toString();
+    }
+
+    /**
+     * Reverse vowels of a String
+     *
+     * @param s
+     * @return String
+     */
+    public static String reverseVowels(String s) {
+        if (null == s || s.isEmpty()) {
+            return "";
+        }
+
+        if (s == null || s.length() == 0) {
+            return s;
+        }
+
+        String vowels = "aeiouAEIOU";
+        char[] chars = s.toCharArray();
+        int start = 0;
+        int end = s.length() - 1;
+
+        while (start < end) {
+            while (start < end && vowels.indexOf(chars[start]) == -1) {
+                start++;
+            }
+            while (start < end && vowels.indexOf(chars[end]) == -1) {
+                end--;
+            }
+
+            char temp = chars[start];
+            chars[start] = chars[end];
+            chars[end] = temp;
+
+            start++;
+            end--;
+        }
+        return new String(chars);
     }
 }

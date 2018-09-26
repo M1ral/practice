@@ -10,6 +10,15 @@ public class Power {
         System.out.println("pow: " + pow(2, -1));
     }
 
+    public static boolean isPowerOfTwo(int n) {
+        return ( n > 0 && (n & (n-1)) == 0);
+    }
+
+    public boolean isPowerOfThree(int n) {
+        // highest int that can be power of 3
+        return n > 0 && 1162261467 % n == 0;
+    }
+
     private static double pow(int x, int pow) {
         if (x == 0) {
             return 0;

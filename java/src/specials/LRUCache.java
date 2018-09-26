@@ -5,107 +5,101 @@ import java.util.Map;
 
 public class LRUCache {
 
-    private int capacity;
-    private Node head = null;
-    private Node end = null;
-    private Map<Integer, Node> map = new HashMap<>();
+    int capacity;
+    DoublyLinkedList list;
+    Map<Integer, DoublyNode> map;
 
     public LRUCache(int capacity) {
+        list = new DoublyLinkedList();
+        map = new HashMap<>();
         this.capacity = capacity;
     }
 
-    /**
-     * Get Node from the cache
-     *
-     * @param key
-     * @return int
-     */
     public int get(int key) {
-        if (map.containsKey(key)) {
-            Node n = map.get(key);
-            remove(n); // remove from current position in the list
-            setHead(n); //
-            return n.value;
-        }
-        return -1;
+        DoublyNode node = map.get(key);
+        if (node != null) {
+            list.remove(node);
+            list.addFirst(node);
+            return node.value;
+        } else
+            return -1;
     }
 
-    /**
-     * Set Node in the cache
-     *
-     * @param key
-     * @param value
-     */
-    public void set(int key, int value) {
-        // if key is present
-        if (map.containsKey(key)) {
-            Node old = map.get(key);
-            old.value = value;
-            remove(old); // remove from the list
-            setHead(old); // bring to front
+    public void put(int key, int value) {
+        DoublyNode node = map.get(key);
+        if (node != null) {
+            list.remove(node);
+            node.value = value;
+            list.addFirst(node);
         } else {
-            Node n = new Node(key, value);
-            if (map.size() >= capacity) {
-                map.remove(end.key);
-                remove(end); // REMOVE LEAST RECENTLY USED ITEM
+            if (list.size() == capacity) {
+                map.remove(list.removeLast().key);
             }
-            setHead(n); // bring to front
-            map.put(key, n);
+            node = new DoublyNode(key, value);
+            list.addFirst(node);
+            map.put(key, node);
         }
     }
 
-    /**
-     * Set head of the doubly LinkedList
-     * @param n
-     */
-    private void setHead(Node n) {
-        // previous and next
-        n.next = head;
-        n.previous = null;
+    class DoublyNode {
+        int key;
+        int value;
+        DoublyNode prev;
+        DoublyNode next;
 
-        // if head is present
-        if (head != null) {
-            head.previous = n;
-        }
-
-        head = n;
-
-        // if there are no other nodes
-        if (end == null) {
-            end = head;
+        DoublyNode(int key, int value) {
+            this.key = key;
+            this.value = value;
         }
     }
 
-    /**
-     * Remove node from the doubly LinkedList
-     * @param n
-     */
-    private void remove(Node n) {
-        // handle previous
-        if (n.previous != null) {
-            n.previous.next = n.next;
-        } else { // previous is head
-            head.next = n.next;
+    class DoublyLinkedList {
+        DoublyNode head;
+        DoublyNode tail;
+        int size = 0;
+
+        void addFirst(DoublyNode node) {
+            if (head == null) {
+                head = node;
+                tail = node;
+            } else {
+                node.next = head;
+                head.prev = node;
+                head = node;
+            }
+            size++;
         }
 
-        // handle next
-        if (n.next != null) {
-            n.next.previous = n.previous;
-        } else { // next is end
-            end = n.previous;
+        void remove(DoublyNode node) {
+            if (node == head) {
+                head = head.next;
+                if (head == null)
+                    tail = null;
+                else
+                    head.prev = null;
+            } else if (node == tail) {
+                tail = tail.prev;
+                if (tail == null)
+                    head = null;
+                else
+                    tail.next = null;
+            } else {
+                DoublyNode prev = node.prev;
+                DoublyNode next = node.next;
+                prev.next = next;
+                next.prev = prev;
+            }
+            size--;
         }
-    }
-}
 
-// Doubly-LinkedList Node
-class Node {
-    public int key;
-    public int value;
-    public Node previous;
-    public Node next;
+        DoublyNode removeLast() {
+            DoublyNode lastNode = tail;
+            this.remove(this.tail);
+            return lastNode;
+        }
 
-    public Node(int key, int value) {
-        this.key = key;
-        this.value = value;
+        int size() {
+            return size;
+        }
     }
 }

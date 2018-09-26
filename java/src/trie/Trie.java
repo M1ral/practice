@@ -160,7 +160,7 @@ public class Trie {
             return false;
         }
 
-        //TODO - understand this recursive function - step by step debugging
+        //TODO - understand this function - step by step debugging
         return delete(word, this.root, 0);
     }
 
