@@ -61,7 +61,8 @@ public class RotateImage {
         }
 
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+            // start from the point after (i = j)
+            for (int j = i+1; j < n; j++) {
                 if (j > i) {
                     int temp = matrix[i][j];
                     matrix[i][j] = matrix[j][i];

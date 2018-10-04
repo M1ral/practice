@@ -15,6 +15,25 @@ public class GenerateParenthesis {
         return list;
     }
 
+    /**
+     * iterations
+     * -- ""
+     * ((()))
+     * -- ((
+     * (()())
+     * -- (()
+     * (())()
+     * -- (
+     * ()(())
+     * -- ()(
+     * ()()()
+     *
+     * @param list
+     * @param str
+     * @param open
+     * @param close
+     * @param length
+     */
     public static void traverse(List<String> list, String str, int open, int close, int length) {
         if (str.length() == length * 2) {
             list.add(str);

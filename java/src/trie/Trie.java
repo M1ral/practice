@@ -1,5 +1,8 @@
 package trie;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Trie {
 
     private final TrieNode root;
@@ -212,9 +215,19 @@ public class Trie {
 
         TrieNode current = root;
         for (Character c : root.children.keySet()) {
-
         }
 
         return "Trie is available, I need to figure out how to print it though!";
+    }
+}
+
+class TrieNode {
+
+    public Map<Character, TrieNode> children;
+    public boolean endOfWord;
+
+    public TrieNode() {
+        children = new HashMap<>();
+        endOfWord = false;
     }
 }
