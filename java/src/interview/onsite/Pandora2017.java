@@ -1,4 +1,4 @@
 package interview.onsite;
 
-public class Workday {
+public class Pandora2017 {
 }

@@ -1,4 +1,4 @@
 package interview.onsite;
 
-public class Amazon1 {
+public class Google2018 {
 }

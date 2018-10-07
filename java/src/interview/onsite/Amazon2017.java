@@ -1,4 +1,4 @@
 package interview.onsite;
 
-public class Amazon2 {
+public class Amazon2017 {
 }

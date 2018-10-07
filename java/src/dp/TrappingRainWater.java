@@ -1,4 +1,4 @@
-package dynamicpogramming;
+package dp;
 
 /**
  * https://leetcode.com/problems/trapping-rain-water/solution/

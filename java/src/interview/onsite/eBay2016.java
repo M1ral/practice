@@ -1,4 +1,4 @@
 package interview.onsite;
 
-public class Pandora {
+public class eBay2016 {
 }

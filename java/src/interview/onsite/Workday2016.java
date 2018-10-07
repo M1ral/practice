@@ -1,4 +1,4 @@
 package interview.onsite;
 
-public class eBay {
+public class Workday2016 {
 }
