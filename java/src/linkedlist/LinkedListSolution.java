@@ -3,7 +3,9 @@ package linkedlist;
 import linkedlist.helper.ListNodeHelper;
 import linkedlist.pojo.ListNode;
 
+import java.util.Comparator;
 import java.util.Date;
+import java.util.PriorityQueue;
 import java.util.Stack;
 
 public class LinkedListSolution {
@@ -98,8 +100,9 @@ public class LinkedListSolution {
             return;
         }
         if (head.val == val) {
-            ListNode temp = head.next;
-            head = null;
+            ListNode temp = head;
+            head = head.next;
+            temp = null;
             return;
         }
 
@@ -306,7 +309,7 @@ public class LinkedListSolution {
     }
 
     /**
-     * MergeTrees given k sorted linked lists
+     * MergeTrees given k sorted linked lists ( O(n log k))
      *
      * @param lists
      * @return
@@ -315,16 +318,28 @@ public class LinkedListSolution {
         if (null == lists || lists.length == 0) {
             return null;
         }
-        if (lists.length < 2) {
-            return lists[0];
+
+        PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>((ListNode l1, ListNode l2) -> l1.val - l2.val);
+
+        for (ListNode node : lists) {
+            if (node != null)
+                queue.offer(node);
         }
 
-        ListNode result = lists[0];
-        for (int i = 1; i < lists.length; i++) {
-            result = mergeSorted(result, lists[i]);
+        ListNode dummy = new ListNode(0);
+        ListNode p = dummy;
+
+        while (!queue.isEmpty()) {
+            ListNode n = queue.poll();
+            p.next = n;
+            p = p.next;
+
+            if (null != n.next)
+                queue.offer(n.next);
+
         }
 
-        return result;
+        return dummy.next;
     }
 
     /**
@@ -422,11 +437,7 @@ public class LinkedListSolution {
             slow = slow.next;
         }
 
-        if (null != fast && null != fast.next && fast.val == slow.val) {
-            return true;
-        }
-
-        return false;
+        return (null != fast && null != fast.next && fast.val == slow.val);
     }
 
     /**
