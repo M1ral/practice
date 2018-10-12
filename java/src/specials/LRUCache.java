@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class LRUCache {
 
-    int capacity;
-    DoublyLinkedList list;
-    Map<Integer, DoublyNode> map;
+    private int capacity;
+    private DoublyLinkedList list;
+    private Map<Integer, DoublyNode> map;
 
     public LRUCache(int capacity) {
         list = new DoublyLinkedList();
@@ -33,7 +33,7 @@ public class LRUCache {
             list.addFirst(node);
         } else {
             if (list.size() == capacity) {
-                map.remove(list.removeLast().key);
+                map.remove(list.removeLast().key); // LRU remove
             }
             node = new DoublyNode(key, value);
             list.addFirst(node);
