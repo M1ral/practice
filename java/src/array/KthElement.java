@@ -33,7 +33,7 @@ public class KthElement {
     }
 
     public static int findKthLargestHeap(int[] arr, int k) {
-        PriorityQueue<Integer> q = new PriorityQueue<Integer>(k);
+        PriorityQueue<Integer> q = new PriorityQueue<Integer>();
 
         for (int i : arr) {
             q.offer(i);

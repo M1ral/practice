@@ -5,18 +5,18 @@ import java.util.*;
 public class Subsets {
 
     public static void main(String[] args) {
-        // subsets 1 - iterative
-        System.out.println("subsetsIter(new int[]{1,2,3}) = " + subsetsIter(new Integer[]{1, 2, 3}));
-        System.out.println("subsetsIter(new int[]{1,2,3}) = " + subsetsIter(new String[]{"a", "b", "c"}));
+        // subsetsDup 1 - iterative
+        System.out.println("subsetsIterDup(new int[]{1,2,3}) = " + subsetsIter(new Integer[]{1, 2, 3}));
+        System.out.println("subsetsIterDup(new int[]{1,2,3}) = " + subsetsIter(new String[]{"a", "b", "c"}));
 
-        // subsets 1 - recursive
+        // subsetsDup 1 - recursive
         System.out.println("subsetsRec(new int[]{1,2,3}) = " + subsetsRec(new int[]{1, 2, 3}));
 
-        // subsets 2 - iterative
+        // subsetsDup 2 - iterative
         System.out.println("subsets2Iter(new int[]{1,2,2}) = " + subsets2Iter(new Integer[]{1, 2, 2}));
         System.out.println("subsets2Iter(new int[]{1,2,2}) = " + subsets2Iter(new String[]{"a", "b", "b"}));
 
-        // subsets 2 - recursive
+        // subsetsDup 2 - recursive
 
     }
 
@@ -63,7 +63,7 @@ public class Subsets {
     }
 
     /**
-     * Print subsetsIter without duplicates
+     * Print subsetsIterDup without duplicates
      *
      * @param elements
      * @return List

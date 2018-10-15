@@ -13,10 +13,14 @@ public class TinyUrlEncodeDecode {
 
     public static void main(String[] args) {
         String tinyURL = encode("http://thisislongurl.com/abcd/123");
+        String tinyURL2 = encode("http://thisislongurl.com/abcd/123");
         String longURL = decode(tinyURL);
+        String longURL2 = decode(tinyURL2);
 
         System.out.println("tinyURL = " + tinyURL);
+        System.out.println("tinyURL2 = " + tinyURL2);
         System.out.println("longURL = " + longURL);
+        System.out.println("longURL2 = " + longURL2);
     }
 
     public static String encode(String longUrl) {

@@ -39,7 +39,7 @@ public class WordLadder {
                 }
                 // bfs - add next set of words for current word
                 // i.e, hot -> dot, lot
-                addNextWord(word, wordSet, toVisit);
+                addNextWords(word, wordSet, toVisit);
             }
 
             // next vertex
@@ -56,7 +56,7 @@ public class WordLadder {
      * @param wordSet
      * @param toVisit
      */
-    private static void addNextWord(String word, Set<String> wordSet, Deque<String> toVisit) {
+    private static void addNextWords(String word, Set<String> wordSet, Deque<String> toVisit) {
         wordSet.remove(word);
         char[] data = word.toCharArray();
         for (int i = 0; i < data.length; i++) {
