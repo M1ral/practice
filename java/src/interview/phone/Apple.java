@@ -2,9 +2,16 @@ package interview.phone;
 
 public class Apple {
 
+    public static void main(String[] args) {
+        //Iterator<Integer> ints  = Iterator(1,2,3,4,5);
+
+    }
+
 }
 
 class Iterators {
+
+
     public static <F, T> Iterator<T> map(Iterator<T> iterator, Function<T, F> mapper) {
         if (null == iterator || null == mapper) {
             return null;
