@@ -6,7 +6,7 @@ public class KthElement {
 
     public static void main(String[] args) {
         System.out.println("findKthLargest: " + findKthLargest(new int[]{2, 3, 4, 1, 7, 0}, 3));
-        System.out.println("findKthLargestHeap: " + findKthLargestHeap(new int[]{2, 3, 4, 1, 7, 0}, 3));
+        System.out.println("findKthLargestHeap: " + findKthLargestHeap(new int[]{1,2,3,4,5}, 2));
         System.out.println("findKthSmallest: " + findKthSmallest(new int[]{2, 3, 4, 1, 7, 0}, 5));
         System.out.println("findKthSmallestHeap: " + findKthSmallestHeap(new int[]{2, 3, 4, 1, 7, 0}, 5));
 
