@@ -40,20 +40,20 @@ public class Depth {
      * @param root
      * @return int
      */
-    public static int minDepthRecurse(TreeNode root) {
+    private static int minDepthRecurse(TreeNode root) {
         if (null == root) {
             return 0;
         }
-
-        int leftDepth = minDepthRecurse(root.left);
-        int rightDepth = minDepthRecurse(root.right);
-
-        if (leftDepth == 0) {
-            return 1 + rightDepth;
+        if (null == root.left && null == root.right) {
+            return 1;
         }
-        if (rightDepth == 0) {
-            return 1 + leftDepth;
+        if (null == root.left) {
+            return 1 + minDepthRecurse(root.right);
         }
+        if (null == root.right) {
+            return 1 + minDepthRecurse(root.left);
+        }
+        
         return 1 + Math.min(minDepthRecurse(root.left), minDepthRecurse(root.right));
     }
 
