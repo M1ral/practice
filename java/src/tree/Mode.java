@@ -49,4 +49,52 @@ public class Mode {
 
         inorder(root.right, map);
     }
+
+    public int[] findModeJava7(TreeNode root) {
+        if (null == root) {
+            return new int[]{};
+        }
+
+        List<Integer> list = new ArrayList();
+        traverse(root, list);
+
+        int[] res = new int[list.size()];
+        int index = 0;
+        for (int i : list) {
+            res[index++] = i;
+        }
+
+        return res;
+    }
+
+    int maxjava7 = Integer.MIN_VALUE;
+    int count = 1;
+    Integer prev = null;
+
+    private void traverse(TreeNode root, List<Integer> list) {
+        if (null == root) {
+            return;
+        }
+
+        traverse(root.left, list);
+
+        if (prev != null) {
+            if (root.val == prev) {
+                count++;
+            } else {
+                count = 1;
+            }
+        }
+
+        if (count > maxjava7) {
+            maxjava7 = count;
+            list.clear();
+            list.add(root.val);
+        } else if (count == maxjava7){
+            list.add(root.val);
+        }
+        prev = root.val;
+
+        traverse(root.right, list);
+    }
 }
