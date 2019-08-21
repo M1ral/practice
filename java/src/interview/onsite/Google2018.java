@@ -20,6 +20,9 @@ public class Google2018 {
         // Question 2
         System.out.println("longestSubstrWith2UniqueChars(\"ababbabccde\") = " +
                 longestSubstrWith2UniqueChars("ababbabccde"));
+
+        System.out.println("longestSubstrWithKUniqueChars(\"ababbabccde\") = " +
+                findLongestStringWithKUniqueChars("ababbabccde", 3));
     }
 
     // Question 1
@@ -107,6 +110,48 @@ public class Google2018 {
                 candidate = temp;
             }
         }
+        return candidate;
+    }
+
+    private static String findLongestStringWithKUniqueChars(String s, int k) {
+        if (null == s || s.isEmpty()) {
+            return null;
+        }
+        if (s.length() < k) {
+            return s;
+        }
+
+        Map<Character, Integer> map = new HashMap<>();
+        String temp = "";
+        String candidate = "";
+        int max = Integer.MIN_VALUE;
+        char[] chars = s.toCharArray();
+
+        for (int i = 0; i < chars.length; i++) {
+            char c = chars[i];
+            if (map.containsKey(c)) {
+                map.put(c, map.get(c) + 1);
+            } else {
+                map.put(c, 1);
+            }
+
+            while (map.size() > k) {
+                char toRemove = temp.charAt(0);
+                temp = temp.substring(1);
+                map.put(toRemove, map.get(toRemove) - 1);
+
+                if (map.get(toRemove) == 0) {
+                    map.remove(toRemove);
+                }
+            }
+
+            temp += c;
+            if (temp.length() > max) {
+                candidate = temp;
+                max = candidate.length();
+            }
+        }
+
         return candidate;
     }
 }
