@@ -332,11 +332,10 @@ public class LinkedListSolution {
         while (!queue.isEmpty()) {
             ListNode n = queue.poll();
             p.next = n;
-            p = p.next;
+            p = n;
 
             if (null != n.next)
                 queue.offer(n.next);
-
         }
 
         return dummy.next;
@@ -448,29 +447,22 @@ public class LinkedListSolution {
      * @return ListNode
      */
     public static ListNode removeNthFromEnd(ListNode head, int n) {
-        if (null == head || n < 0) {
-            return null;
+        if (null == head) {
+            return head;
         }
 
         ListNode fast = head;
-        int i = 0;
-        // increment fast to point to 'nth' node from start
-        while (null != fast && i != n) {
+        while (fast != null && n != 0) {
             fast = fast.next;
-            i++;
+            n--;
         }
 
-        if (fast == null) {
-            if (n == 1) {
-                return null;
-            } else if (n != i) { // n is greater than the length of the linked list
-                return head;
-            }
+        if (null == fast && n != 0) {
+            return null;
         }
 
-        ListNode prev = null;
         ListNode current = head;
-        ListNode result = head;
+        ListNode prev = null;
 
         while (null != fast) {
             fast = fast.next;
@@ -478,15 +470,15 @@ public class LinkedListSolution {
             current = current.next;
         }
 
-        // delete the node (set prev.next = current.next)
-        if (null == prev) { // remove head
+        if (null == prev) {
+            // remove head
             ListNode temp = head.next;
-            result = temp;
+            return temp;
         } else {
             prev.next = current.next;
         }
 
-        return result;
+        return head;
     }
 
     /**

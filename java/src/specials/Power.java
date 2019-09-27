@@ -7,7 +7,7 @@ public class Power {
 
         System.out.println("-- RECURSIVE --");
         System.out.println("pow: " + pow(2, 4));
-        System.out.println("pow: " + pow(2, -1));
+        System.out.println("pow: " + rpow(2, -3));
     }
 
     public static boolean isPowerOfTwo(int n) {
@@ -66,7 +66,7 @@ public class Power {
         } else if (n > 0) { // odd - positive
             return half * half * x;
         } else {
-            return half * half / x;
+            return half * half * 1/x;
         }
     }
 }
