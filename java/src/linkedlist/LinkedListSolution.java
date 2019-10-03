@@ -184,7 +184,6 @@ public class LinkedListSolution {
             return;
         }
 
-
         ListNode prev = null;
 
         while (null != current && current.val != n) {
