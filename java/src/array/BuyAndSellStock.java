@@ -41,30 +41,30 @@ public class BuyAndSellStock {
      * B - [38  36  34  30  28  28  28  *28*  10  5    0] // calculate the current profit with maxSoFar from back
      * T - [38  38  38  38  46  46  46  *46*  38  38  38]
      *
-     * @param stockPrices
+     * @param prices
      * @return int maximum profit
      */
-    public static int maxProfitBuySellTwice(int[] stockPrices) {
-        if (null == stockPrices || stockPrices.length < 2) {
+    public static int maxProfitBuySellTwice(int[] prices) {
+        if (null == prices || prices.length < 2) {
             return -1;
         }
 
         int profit = Integer.MIN_VALUE;
-        int[] F = new int[stockPrices.length];
+        int[] F = new int[prices.length];
 
         // Min and Max for front and back arrays
-        int minSoFar = stockPrices[0];
-        int maxSoFar = stockPrices[stockPrices.length - 1];
+        int minSoFar = prices[0];
+        int maxSoFar = prices[prices.length - 1];
 
-        for (int i = 0; i < stockPrices.length; i++) {
-            minSoFar = Math.min(minSoFar, stockPrices[i]);
-            profit = Math.max(profit, (stockPrices[i] - minSoFar));
+        for (int i = 0; i < prices.length; i++) {
+            minSoFar = Math.min(minSoFar, prices[i]);
+            profit = Math.max(profit, (prices[i] - minSoFar));
             F[i] = profit;
         }
 
-        for (int j = stockPrices.length - 1; j > 0; j--) {
-            maxSoFar = Math.max(maxSoFar, stockPrices[j]);
-            profit = Math.max(profit, (maxSoFar - stockPrices[j]) + F[j]);
+        for (int j = prices.length - 1; j > 0; j--) {
+            maxSoFar = Math.max(maxSoFar, prices[j]);
+            profit = Math.max(profit, (maxSoFar - prices[j]) + F[j]);
         }
 
         return profit;

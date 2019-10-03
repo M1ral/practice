@@ -46,7 +46,6 @@ public class Google2018 {
         }
     }
 
-
     public static boolean areEqual(String word1, String word2) {
         if (null == word1 || word1.isEmpty() || null == word2 || word2.isEmpty()) {
             return false;
