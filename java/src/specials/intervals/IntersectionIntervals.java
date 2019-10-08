@@ -1,12 +1,16 @@
-package specials;
+package specials.intervals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Intervals {
+public class IntersectionIntervals {
 
     public static void main(String[] args) {
+        System.out.println("intervalIntersection({{1,3},{5,8},{100,105}}, {{0,10}, {6,12}, {99, 1000}})) = " +
+                Arrays.deepToString(intervalIntersection(
+                        new int[][]{{1, 3}, {5, 8}, {100, 105}},
+                        new int[][]{{0, 10}, {6, 12}, {99, 102}})));
     }
 
     public static int[][] intervalIntersection(int[][] A, int[][] B) {
@@ -31,11 +35,6 @@ public class Intervals {
             }
         }
 
-        int[][] ret = new int[result.size()][2];
-        int row = 0;
-        for (int[] arr : result) {
-            ret[row++] = arr;
-        }
-        return ret;
+        return result.toArray(new int[result.size()][]);
     }
 }

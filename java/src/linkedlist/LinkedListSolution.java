@@ -3,9 +3,7 @@ package linkedlist;
 import linkedlist.helper.ListNodeHelper;
 import linkedlist.pojo.ListNode;
 
-import java.util.Comparator;
 import java.util.Date;
-import java.util.PriorityQueue;
 import java.util.Stack;
 
 public class LinkedListSolution {
@@ -25,18 +23,6 @@ public class LinkedListSolution {
         delete(node, 1);
         System.out.println("delete node from list 2 : " + node);
 
-        // reverse
-        node = ListNodeHelper.generateLinkedList(new int[]{1,2,3,4,5});
-        reverse(node);
-        System.out.println("reverse(node) = " + node);
-
-        // recursive reverse
-        START = new Date().getTime();
-        node = ListNodeHelper.generateLinkedList(new int[]{1,2,3});
-        reverseRecursive(node);
-        END = new Date().getTime();
-        System.out.println("recursive reverse(node) = " + node + ", time : " + (END - START));
-
         // rec reverse try dev
         START = new Date().getTime();
         ListNode n1 = ListNodeHelper.generateLinkedList(new int[]{1,2,3});
@@ -48,12 +34,6 @@ public class LinkedListSolution {
         n1 = ListNodeHelper.generateLinkedList(new int[]{1,4,7});
         ListNode n2 = ListNodeHelper.generateLinkedList(new int[]{2,5,9,10});
         System.out.println("merge 2 sorted : " + mergeSorted(n1, n2));
-
-        // merge k sorted linked lists
-        n1 = ListNodeHelper.generateLinkedList(new int[]{1,4,7});
-        n2 = ListNodeHelper.generateLinkedList(new int[]{2,5,9,10});
-        ListNode n3 = ListNodeHelper.generateLinkedList(new int[]{3,8,11,12});
-        System.out.println("merge K sorted : " + mergeKSorted(new ListNode[]{n1, n2, n3}));
 
         // merge 2 sorted linked lists in place
         n1 = ListNodeHelper.generateLinkedList(new int[]{1,4,7});
@@ -77,16 +57,15 @@ public class LinkedListSolution {
         // swap 2 linkedlist nodes without swapping val
         n1 = ListNodeHelper.generateLinkedList(new int[]{2});
         n2 = ListNodeHelper.generateLinkedList(new int[]{9});
-        n3 = ListNodeHelper.generateLinkedList(new int[]{2,1,4,5,3,7,8,9});
+        ListNode n3 = ListNodeHelper.generateLinkedList(new int[]{2,1,4,5,3,7,8,9});
         System.out.println("swap nodes = " + swap(n3, n1, n2));
 
         // check palindrome
         n1 = ListNodeHelper.generateLinkedList(new int[]{2,4,5,3,4,2});
         System.out.println("check palindrome : " + isPalindrome(n1));
 
-        // odd even list
-        n1 = ListNodeHelper.generateLinkedList(new int[]{1,2,3,4,5,6,7,8,9});
-        System.out.println("odd even list : " + oddEvenList(n1));
+        n1 = ListNodeHelper.generateLinkedList(new int[]{1,2,3,2,1});
+        System.out.println("check palindrome : " + isPalindrome(n1));
     }
 
     /**
@@ -117,54 +96,6 @@ public class LinkedListSolution {
         if (null != c) {
             p.next = c.next;
         }
-    }
-
-    /**
-     * Reverse given linked list
-     *
-     * @param head
-     */
-    private static ListNode reverse(ListNode head) {
-        if (null == head) {
-            return null;
-        }
-
-        ListNode prev = null;
-        ListNode current = head;
-        ListNode next = null;
-
-        while (null != current) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
-        }
-
-        head = prev;
-        return head;
-    }
-
-    /**
-     * Reverse list recursively
-     *
-     * @param head
-     * @return node {@link ListNode}
-     */
-    private static ListNode reverseRecursive(ListNode head) {
-        if (head == null || head.next == null) {
-            return null; // first question
-        }
-
-        // we grab the next element (which will be the last after we reverse it)
-        ListNode next = head.next;
-        // unlink list from the rest or you will get a cycle
-        head.next = null;
-        // then we reverse everything from the second element on
-        ListNode reverseRest = reverseRecursive(next);
-        // then we join the two lists
-        next.next = head;
-
-        return reverseRest;
     }
 
     /**
@@ -305,39 +236,6 @@ public class LinkedListSolution {
         }
 
         return result;
-    }
-
-    /**
-     * MergeTrees given k sorted linked lists ( O(n log k))
-     *
-     * @param lists
-     * @return
-     */
-    private static ListNode mergeKSorted(ListNode[] lists) {
-        if (null == lists || lists.length == 0) {
-            return null;
-        }
-
-        PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>((ListNode l1, ListNode l2) -> l1.val - l2.val);
-
-        for (ListNode node : lists) {
-            if (node != null)
-                queue.offer(node);
-        }
-
-        ListNode dummy = new ListNode(0);
-        ListNode p = dummy;
-
-        while (!queue.isEmpty()) {
-            ListNode n = queue.poll();
-            p.next = n;
-            p = n;
-
-            if (null != n.next)
-                queue.offer(n.next);
-        }
-
-        return dummy.next;
     }
 
     /**
@@ -639,39 +537,6 @@ public class LinkedListSolution {
         }
 
         return true;
-    }
-
-    /**
-     * Join odd positioned nodes to even nodes
-     *
-     * @param head
-     * @return ListNode
-     */
-    public static ListNode oddEvenList(ListNode head) {
-        if (null == head || null == head.next) {
-            return head;
-        }
-
-        ListNode result = head;
-        ListNode currentOdd = head;
-        ListNode currentEven = head.next;
-        ListNode prevOdd = currentOdd;
-        ListNode prevEven = currentEven;
-        ListNode couplingNode = currentEven;
-
-        while (null != currentOdd && null != currentOdd.next && null != currentEven && null != currentEven.next) {
-            // odd
-            currentOdd = currentOdd.next.next;
-            prevOdd.next = currentOdd;
-            prevOdd = currentOdd;
-            // even
-            currentEven = currentEven.next.next;
-            prevEven.next = currentEven;
-            prevEven = currentEven;
-        }
-
-        prevOdd.next = couplingNode;
-        return result;
     }
 
     private static ListNode recRev(ListNode head) {

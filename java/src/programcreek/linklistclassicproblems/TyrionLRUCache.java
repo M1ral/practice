@@ -1,14 +1,15 @@
-package specials;
+package programcreek.linklistclassicproblems;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class LRUCache {
+public class TyrionLRUCache {
+
     private int capacity;
     private DoublyLinkedList list;
     private Map<Integer, DoublyNode> map;
 
-    public LRUCache(int capacity) {
+    public TyrionLRUCache(int capacity) {
         list = new DoublyLinkedList();
         map = new HashMap<>();
         this.capacity = capacity;
