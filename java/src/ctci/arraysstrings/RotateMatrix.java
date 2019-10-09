@@ -1,0 +1,68 @@
+package ctci.arraysstrings;
+
+import java.util.Arrays;
+
+public class RotateMatrix {
+
+    public static void main(String[] args) {
+        int[][] matrix = new int[][]{
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        rotate(matrix);
+        rotate(matrix, true);
+        System.out.println("clockwise: " + Arrays.deepToString(matrix));
+        rotate(matrix, false);
+        System.out.println("counter clockwise: " + Arrays.deepToString(matrix));
+    }
+
+    // Rotate matrix by 90 degrees
+    public static void rotate(int[][] matrix) {
+        if (null == matrix || matrix.length == 0) {
+            return;
+        }
+
+        int[][] rotated = new int[matrix.length][matrix[0].length];
+        for (int i=0; i < matrix.length; i++) {
+            for (int j =0; j < matrix[i].length; j++) {
+                rotated[i][j] = matrix[matrix.length -1 -j][i];
+            }
+        }
+        System.out.println("clockwise (copy of matrix): " + Arrays.deepToString(rotated));
+    }
+
+    public static void rotate(int[][] matrix, boolean clockwise) {
+        if (null == matrix || matrix.length == 0) {
+            return;
+        }
+
+        int n = matrix.length;
+        if (clockwise) {
+            for (int i = 0; i < n/2; i++) {
+                int[] temp = matrix[i];
+                matrix[i] = matrix[n - 1 - i];
+                matrix[n-1-i] = temp;
+            }
+        } else {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n/2; j++) {
+                    int temp = matrix[i][j];
+                    matrix[i][j] = matrix[i][n-1-j];
+                    matrix[i][n-1-j] = temp;
+                }
+            }
+        }
+
+        // swap diagonally
+        for (int i = 0; i < n; i++) {
+            for (int j = i+1; j < n; j++) {
+                if (j > i) {
+                    int temp = matrix[i][j];
+                    matrix[i][j] = matrix[j][i];
+                    matrix[j][i] = temp;
+                }
+            }
+        }
+    }
+}

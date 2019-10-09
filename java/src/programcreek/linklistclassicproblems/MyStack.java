@@ -74,12 +74,12 @@ public class MyStack<E> {
         stack.push(2);
         stack.push(3);
         stack.push(4);
-        System.out.println("stack.pop() = " + stack.pop());
-        System.out.println("stack.pop() = " + stack.pop());
+        System.out.println("leetcoce.stack.pop() = " + stack.pop());
+        System.out.println("leetcoce.stack.pop() = " + stack.pop());
         stack.push(5);
         stack.push(6);
-        System.out.println("stack.pop() = " + stack.pop());
-        System.out.println("stack.pop() = " + stack.pop());
-        System.out.println("stack.pop() = " + stack.pop());
+        System.out.println("leetcoce.stack.pop() = " + stack.pop());
+        System.out.println("leetcoce.stack.pop() = " + stack.pop());
+        System.out.println("leetcoce.stack.pop() = " + stack.pop());
     }
 }
