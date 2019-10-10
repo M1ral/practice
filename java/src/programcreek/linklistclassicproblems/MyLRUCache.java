@@ -3,13 +3,13 @@ package programcreek.linklistclassicproblems;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TyrionLRUCache {
+public class MyLRUCache {
 
     private int capacity;
     private DoublyLinkedList list;
     private Map<Integer, DoublyNode> map;
 
-    public TyrionLRUCache(int capacity) {
+    public MyLRUCache(int capacity) {
         list = new DoublyLinkedList();
         map = new HashMap<>();
         this.capacity = capacity;

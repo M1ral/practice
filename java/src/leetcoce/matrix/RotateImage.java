@@ -46,23 +46,19 @@ public class RotateImage {
         }
 
         int N = matrix.length;
-        for (int i = 0; i < N / 2; i++) {
+        for (int layer = 0; layer < N / 2; layer++) {
             // Consider elements in group of 4 in current square
-            for (int j = i; j < N - i - 1; j++) {
+            for (int j = layer; j < N - layer - 1; j++) {
                 // store current cell in temp variable
-                int temp = matrix[i][j];
-
+                int temp = matrix[layer][j];
                 // move values from right to top
-                matrix[i][j] = matrix[j][N - 1 - i];
-
+                matrix[layer][j] = matrix[j][N - 1 - layer];
                 // move values from bottom to right
-                matrix[j][N - 1 - i] = matrix[N - 1 - i][N - 1 - j];
-
+                matrix[j][N - 1 - layer] = matrix[N - 1 - layer][N - 1 - j];
                 // move values from left to bottom
-                matrix[N - 1 - i][N - 1 - j] = matrix[N - 1 - j][i];
-
+                matrix[N - 1 - layer][N - 1 - j] = matrix[N - 1 - j][layer];
                 // assign temp to left
-                matrix[N - 1 - j][i] = temp;
+                matrix[N - 1 - j][layer] = temp;
             }
         }
     }

@@ -10,26 +10,40 @@ public class RotateMatrix {
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        rotate(matrix);
-        rotate(matrix, true);
-        System.out.println("clockwise: " + Arrays.deepToString(matrix));
+        System.out.println("original: " + Arrays.deepToString(matrix));
+        rotateInPlace(matrix, true);
+        System.out.println("in place clockwise: " + Arrays.deepToString(matrix));
+        rotateInPlace(matrix, false);
+        System.out.println("in place counter clockwise: " + Arrays.deepToString(matrix));
         rotate(matrix, false);
         System.out.println("counter clockwise: " + Arrays.deepToString(matrix));
+        rotate(matrix, true);
+        System.out.println("clockwise: " + Arrays.deepToString(matrix));
     }
 
     // Rotate matrix by 90 degrees
-    public static void rotate(int[][] matrix) {
+    public static void rotateInPlace(int[][] matrix, boolean clockwise) {
         if (null == matrix || matrix.length == 0) {
             return;
         }
 
-        int[][] rotated = new int[matrix.length][matrix[0].length];
-        for (int i=0; i < matrix.length; i++) {
-            for (int j =0; j < matrix[i].length; j++) {
-                rotated[i][j] = matrix[matrix.length -1 -j][i];
+        int n = matrix.length;
+        for (int layer = 0; layer < n/2; layer++) {
+            for (int j = layer; j < n-1-layer; j++) {
+                int temp = matrix[layer][j];
+                if (clockwise) {
+                    matrix[layer][j] = matrix[n-1-j][layer];
+                    matrix[n-1-j][layer] = matrix[n-1-layer][n-1-j];
+                    matrix[n-1-layer][n-1-j] = matrix[j][n-1-layer];
+                    matrix[j][n-1-layer] = temp;
+                } else {
+                    matrix[layer][j] = matrix[j][n - 1 - layer];
+                    matrix[j][n - 1 - layer] = matrix[n - 1 - layer][n - 1 - j];
+                    matrix[n - 1 - layer][n - 1 - j] = matrix[n - 1 - j][layer];
+                    matrix[n - 1 - j][layer] = temp;
+                }
             }
         }
-        System.out.println("clockwise (copy of matrix): " + Arrays.deepToString(rotated));
     }
 
     public static void rotate(int[][] matrix, boolean clockwise) {
