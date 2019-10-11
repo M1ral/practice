@@ -1,38 +1,29 @@
 package leetcoce.matrix;
 
-import java.util.Arrays;
+import static leetcoce.matrix.MatrixUtils.generateMatrix;
+import static leetcoce.matrix.MatrixUtils.print2D;
 
 public class RotateImage {
 
     public static void main(String[] args) {
-        int[][] matrix = new int[][]{
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}};
+        int[][] matrix = generateMatrix(3, 3);
+
         System.out.println("MATRIX");
-        for (int[] arr : matrix) {
-            System.out.println("[" + Arrays.toString(arr) + "]");
-        }
+        print2D(matrix);
 
         System.out.println("\nCLOCKWISE ROTATION:");
         // clockwise
         rotate(matrix, true);
-        for (int[] arr : matrix) {
-            System.out.println("[" + Arrays.toString(arr) + "]");
-        }
+        print2D(matrix);
 
         System.out.println("\nRESTORING MATRIX BY COUNTER-CLOCKWISE ROTATION:");
         // anti-clock wise
         rotate(matrix, false);
-        for (int[] arr : matrix) {
-            System.out.println("[" + Arrays.toString(arr) + "]");
-        }
+        print2D(matrix);
 
-        System.out.println("CTCI ROTATION");
+        System.out.println("\nCTCI ROTATION");
         rotateCTCI(matrix);
-        for (int[] arr : matrix) {
-            System.out.println("[" + Arrays.toString(arr) + "]");
-        }
+        print2D(matrix);
     }
 
     /**
@@ -77,8 +68,8 @@ public class RotateImage {
             // 7 8 9       1 2 3       9 6 3
             for (int i = 0; i < n / 2; i++) {
                 int[] temp = matrix[i];
-                matrix[i] = matrix[n-1-i];
-                matrix[n-1-i] = temp;
+                matrix[i] = matrix[n - 1 - i];
+                matrix[n - 1 - i] = temp;
             }
         } else {
             // Counterclockwise rotation

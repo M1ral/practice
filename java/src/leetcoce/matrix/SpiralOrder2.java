@@ -1,17 +1,15 @@
 package leetcoce.matrix;
 
-import java.util.Arrays;
+import static leetcoce.matrix.MatrixUtils.print2D;
 
 public class SpiralOrder2 {
 
     public static void main(String[] args) {
-        int[][] matrix = generateMatrix(3);
-        for (int[] arr : matrix) {
-            System.out.println(Arrays.toString(arr));
-        }
+        int[][] matrix = generateSpiralMatrix(3);
+        print2D(matrix);
     }
 
-    public static int[][] generateMatrix(int n) {
+    public static int[][] generateSpiralMatrix(int n) {
         if (n < 1) {
             return new int[0][0];
         }

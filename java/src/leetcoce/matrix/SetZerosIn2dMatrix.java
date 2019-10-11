@@ -1,18 +1,12 @@
 package leetcoce.matrix;
 
-import java.util.Arrays;
+import static leetcoce.matrix.MatrixUtils.print2D;
 
 public class SetZerosIn2dMatrix {
-
-
-    //
     public static void main(String args[]) {
         int[][] matrix = new int[][]{{0,4,5,0},{1,2,3,2},{2,3,1,3}};
         setZeroes(matrix);
-
-        for (int[] arr : matrix) {
-            System.out.println("[" + Arrays.toString(arr) + "]");
-        }
+        print2D(matrix);
     }
 
     /**
