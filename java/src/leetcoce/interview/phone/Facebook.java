@@ -9,7 +9,7 @@ package leetcoce.interview.phone;
  * 0 0 0 0 0
  * 1 1 0 1 1
  * <p>
- * 1. Given two coordinates - top left and bottom right, find the count of 1's in that sub leetcoce.matrix.
+ * 1. Given two coordinates - top left and bottom right, find the count of 1's in that sub matrix.
  * Time - O(M*N), Space - O(1)
  * 2. If pre-processing is allowed, then what can be done to improve on time, if we can trade with space
  */

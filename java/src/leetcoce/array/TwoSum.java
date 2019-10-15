@@ -18,10 +18,10 @@ public class TwoSum {
     }
 
     public boolean find(int target) {
-        return isTwoSum(target);
+        return hasTwoSum(target);
     }
 
-    private boolean isTwoSum(int target) {
+    private boolean hasTwoSum(int target) {
         if (null == data || data.size() < 2) {
             return false;
         }

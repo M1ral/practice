@@ -5,7 +5,6 @@ public class BinarySearch {
     public static void main(String[] args) {
         System.out.println("binary search: " + binarySearch(5, new int[]{1,3,5,7,9,10,14,18,80}));
         System.out.println("recursive search: " + search(5, new int[]{1,3,5,7,9,10,14,18,80}, 0, 100, 0));
-
     }
 
     public static boolean binarySearch(int num, int[] arr) {

@@ -1,4 +1,4 @@
 package programcreek.matrix;
 
-public class largestPlusSign {
+public class LargestPlusSign {
 }

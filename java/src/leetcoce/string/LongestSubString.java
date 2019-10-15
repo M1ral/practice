@@ -1,6 +1,8 @@
 package leetcoce.string;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class LongestSubString {
@@ -9,6 +11,7 @@ public class LongestSubString {
         System.out.println("lengthOfLongestSubstring(\"abcc\") = " + lengthOfLongestSubstring("abcc"));
         System.out.println("lengthOfLongestSubstring(\"abcabcd\") = " + lengthOfLongestSubstring("abcabcd"));
         System.out.println("lengthOfLongestSubstring(\"ababcdabc\") = " + lengthOfLongestSubstring("ababcdabc"));
+        System.out.println("withKUniqueChars(\"ababcdabc\") = " + withKUniqueChars("ababcddddccabc", 2));
     }
 
     /**
@@ -33,11 +36,11 @@ public class LongestSubString {
                 result = Math.max(set.size(), result);
             } else {
                 while (k < i) {
-                    if (s.charAt(k) == ch) {
+                    if (chars[k] == ch) {
                         k++;
                         break;
                     } else {
-                        set.remove(s.charAt(k));
+                        set.remove(chars[k]);
                         k++;
                     }
                 }
@@ -46,4 +49,42 @@ public class LongestSubString {
         }
         return result;
     }
+
+    public static String withKUniqueChars(String input, int k) {
+        if (null == input || input.isEmpty()) {
+            return input;
+        }
+
+        Map<Character, Integer> map = new HashMap<>();
+        char[] chars = input.toCharArray();
+        String result = "", temp = "";
+        int max = Integer.MIN_VALUE;
+
+        for (char ch : chars) {
+            if (map.containsKey(ch)) {
+                map.put(ch, map.get(ch) + 1);
+            } else {
+                map.put(ch, 1);
+            }
+
+            while (map.size() > k) {
+                char toRemove = temp.charAt(0);
+                temp = temp.substring(1);
+                map.put(toRemove, map.get(toRemove) - 1);
+
+                if (map.get(toRemove) == 0) {
+                    map.remove(toRemove);
+                }
+            }
+
+            temp += ch;
+            if (temp.length() > max) {
+                result = temp;
+                max = result.length();
+            }
+        }
+
+        return result;
+    }
+
 }
