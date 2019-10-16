@@ -1,4 +1,4 @@
-package leetcoce.interview.onsite;
+package interview.onsite;
 
 import leetcoce.tree.TreeNode;
 

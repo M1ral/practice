@@ -2,6 +2,10 @@ package leetcoce.tree;
 
 public class Invert {
 
+    public static void main(String[] args) {
+        // call invert tree method
+    }
+
     /**
      * Invert leetcoce.tree
      *
@@ -16,22 +20,23 @@ public class Invert {
      * @param root
      * @return TreeNode
      */
-    public TreeNode invertTree(TreeNode root) {
-        if (root != null) {
-            helper(root);
+    public static TreeNode invertTree(TreeNode root) {
+        if (null != root) {
+            traverse(root);
         }
         return root;
     }
 
-    public void helper(TreeNode p) {
-        TreeNode temp = p.left;
-        p.left = p.right;
-        p.right = temp;
+    public static void traverse(TreeNode root) {
+        if (null == root) {
+            return;
+        }
 
-        if (p.left != null)
-            helper(p.left);
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
 
-        if (p.right != null)
-            helper(p.right);
+        traverse(root.left);
+        traverse(root.right);
     }
 }

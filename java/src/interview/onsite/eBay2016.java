@@ -1,11 +1,11 @@
-package leetcoce.interview.onsite;
+package interview.onsite;
 
 import leetcoce.linkedlist.pojo.ListNode;
 
 public class eBay2016 {
 
     /**
-     * Phone leetcoce.interview with Nomitha
+     * Phone interview with Nomitha
      * @param input
      * @return String encoded String
      *
