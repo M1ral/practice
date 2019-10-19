@@ -1,9 +1,6 @@
 package leetcoce.tree;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class Traversals {
 
@@ -28,6 +25,15 @@ public class Traversals {
 
         System.out.println("\nnPost-Order - recursive:");
         postOrderIter(Tree.createDummyTree());
+
+        // level order
+        System.out.println("\n\n Level-Order - recursive");
+        List<List<Integer>> list = new ArrayList<>();
+        levelOrderRec(Tree.createDummyTree(), 0, list);
+        System.out.println(Arrays.deepToString(list.toArray()));
+
+        System.out.println("\n\n Level-Order - iterative");
+        levelOrderIter(Tree.createDummyTree());
     }
 
     /***********************************************************
@@ -44,6 +50,7 @@ public class Traversals {
         }
 
         inOrderIter(root.left);
+        // inorder
         System.out.print(root.val + "->");
         inOrderIter(root.right);
     }
@@ -57,6 +64,7 @@ public class Traversals {
             return;
         }
 
+        // preorder
         System.out.print(root.val + "->");
         preOrderRec(root.left);
         preOrderRec(root.right);
@@ -73,6 +81,7 @@ public class Traversals {
 
         postOrderRec(root.left);
         postOrderRec(root.right);
+        // postorder
         System.out.print(root.val + "->");
     }
 
@@ -89,7 +98,7 @@ public class Traversals {
         }
 
         TreeNode current = root;
-        Stack<TreeNode> stack = new Stack();
+        Deque<TreeNode> stack = new ArrayDeque<>();
 
         while (null != current) {
             stack.push(current);
@@ -120,7 +129,7 @@ public class Traversals {
             return;
         }
 
-        Stack<TreeNode> stack = new Stack();
+        Deque<TreeNode> stack = new ArrayDeque<>();
         stack.push(root);
 
         while (!stack.isEmpty()) {
@@ -146,10 +155,10 @@ public class Traversals {
             return;
         }
 
-        Stack<TreeNode> stack = new Stack();
+        Deque<TreeNode> stack = new ArrayDeque<>();
         stack.push(root);
 
-        Stack<Integer> output = new Stack();
+        Deque<Integer> output = new ArrayDeque<>();
 
         while (!stack.isEmpty()) {
             TreeNode current = stack.pop();
@@ -170,5 +179,58 @@ public class Traversals {
         for (int i : list) {
             System.out.print(i + "->");
         }
+    }
+
+    public static void levelOrderRec(
+            TreeNode root, int level, List<List<Integer>> list) {
+        if (null == root) {
+            return;
+        }
+        // find the current level
+        if (level == list.size()) {
+            list.add(level, new ArrayList<Integer>());
+        }
+        // add current element to its level
+        list.get(level).add(root.val);
+
+        levelOrderRec(root.left, level + 1, list);
+        levelOrderRec(root.right, level + 1, list);
+    }
+
+    /**
+     * Level order iterative traversal
+     * @param root
+     */
+    public static void levelOrderIter(TreeNode root) {
+        if (null == root) {
+            return;
+        }
+
+        List<List<Integer>> list = new ArrayList<>();
+        Deque<TreeNode> queue = new ArrayDeque();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> currentLevel = new ArrayList<>();
+
+            while (size != 0) {
+                TreeNode current = queue.removeFirst();
+                currentLevel.add(current.val);
+
+                if (null != current.left) {
+                    queue.add(current.left);
+                }
+                if (null != current.right) {
+                    queue.add(current.right);
+                }
+
+                size--;
+            }
+            list.add(currentLevel);
+        }
+        // leetcode - for (bottom) level order traversal II
+        // Collections.reverse(list);
+        System.out.println(Arrays.deepToString(list.toArray()));
     }
 }

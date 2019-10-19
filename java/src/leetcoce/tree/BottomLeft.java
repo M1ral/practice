@@ -1,7 +1,7 @@
 package leetcoce.tree;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class BottomLeft {
 
@@ -21,11 +21,11 @@ public class BottomLeft {
             return -1;
         }
 
-        Queue<TreeNode> q = new LinkedList();
+        Deque<TreeNode> q = new ArrayDeque<>();
         q.add(root);
 
         while (!q.isEmpty()) {
-            root = q.remove();
+            root = q.removeFirst();
             if (null != root.right) {
                 q.add(root.right);
             }

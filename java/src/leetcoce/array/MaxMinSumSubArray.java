@@ -13,11 +13,11 @@ public class MaxMinSumSubArray {
      * @return int max sum
      */
     public static int maxSubArray(int[] A) {
-        int sum = A[0];
-        int max = A[0];
+        int sum = 0, max = Integer.MIN_VALUE;
 
-        for (int i = 1; i < A.length; i++) {
-            sum = Math.max(sum + A[i], A[i]); // ignore the sum of (n-1) if n is greater than that sum
+        for (int i : A) {
+            // ignore the sum of (n-1) if n is greater than that sum
+            sum = Math.max(sum + i, i);
             max = Math.max(max, sum);
         }
 
@@ -31,11 +31,11 @@ public class MaxMinSumSubArray {
      * @return int min sum
      */
     public static int minSubArray(int[] A) {
-        int sum = A[0];
-        int min = A[0];
+        int sum = 0, min = Integer.MAX_VALUE;
 
-        for (int i = 1; i < A.length; i++) {
-            sum = Math.min(sum + A[i], A[i]); // ignore the sum of (n-1) if n is smaller than that sum
+        for (int i : A) {
+            // ignore the sum of (n-1) if n is greater than that sum
+            sum = Math.min(sum + i, i);
             min = Math.min(min, sum);
         }
 

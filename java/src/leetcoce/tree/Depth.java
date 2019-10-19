@@ -1,19 +1,20 @@
 package leetcoce.tree;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Depth {
 
     public static void main(String[] args) {
-        System.out.println("getHeight(Tree.createDummyTree()) = " + getHeight(Tree.createDummyTree()));
-        System.out.println("maxDepth(Tree.createDummyTree()) = " + maxDepth(Tree.createDummyTree()));
-        System.out.println("minDepth(Tree.createDummyTree()) = " + minDepthRecurse(Tree.createDummyTree()));
-        System.out.println("minDepthIterative(Tree.createDummyTree()) = " + minDepthIterative(Tree.createDummyTree()));
+        System.out.println("getHeight recursive = " + getHeight(Tree.createDummyTree()));
+        System.out.println("maxDepth recursive = " + maxDepth(Tree.createDummyTree()));
+        System.out.println("maxDepth iterative = " + maxDepthIter(Tree.createDummyTree()));
+        System.out.println("minDepth recursive = " + minDepthRec(Tree.createDummyTree()));
+        System.out.println("minDepth iterative  = " + minDepthIterative(Tree.createDummyTree()));
     }
 
     /**
-     * Return the height of given leetcoce.tree node
+     * Return the height of given leetcode.tree node
      * @param root
      * @return int height
      */
@@ -40,7 +41,7 @@ public class Depth {
      * @param root
      * @return int
      */
-    private static int minDepthRecurse(TreeNode root) {
+    private static int minDepthRec(TreeNode root) {
         if (null == root) {
             return 0;
         }
@@ -48,13 +49,14 @@ public class Depth {
             return 1;
         }
         if (null == root.left) {
-            return 1 + minDepthRecurse(root.right);
+            return 1 + minDepthRec(root.right);
         }
         if (null == root.right) {
-            return 1 + minDepthRecurse(root.left);
+            return 1 + minDepthRec(root.left);
         }
         
-        return 1 + Math.min(minDepthRecurse(root.left), minDepthRecurse(root.right));
+        return 1 + Math.min(
+                minDepthRec(root.left), minDepthRec(root.right));
     }
 
     /**
@@ -68,7 +70,7 @@ public class Depth {
             return 0;
         }
 
-        Queue<TreeNode> queue = new LinkedList();
+        Deque<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
         int depth = 1;
 
@@ -90,5 +92,39 @@ public class Depth {
             depth++;
         }
         return depth;
+    }
+
+    /**
+     * max depth iteratively
+     * @param root
+     * @return
+     */
+    public static int maxDepthIter(TreeNode root) {
+        int maxDepth = 0;
+        if (null == root) {
+            return maxDepth;
+        }
+
+        Deque<TreeNode> queue = new ArrayDeque();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            maxDepth++;
+
+            while (size != 0) {
+                TreeNode current = queue.removeFirst();
+                if (null != current.left) {
+                    queue.add(current.left);
+                }
+                if (null != current.right) {
+                    queue.add(current.right);
+                }
+
+                size--;
+            }
+        }
+
+        return maxDepth;
     }
 }

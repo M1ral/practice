@@ -3,7 +3,7 @@ package leetcoce.tree;
 public class NarryDepth {
 
     /**
-     * Find max depth of an N-ary leetcoce.tree
+     * Find max depth of an N-ary leetcode.tree
      *
      * @param root
      * @return int
@@ -16,7 +16,7 @@ public class NarryDepth {
     }
 
     /**
-     * Return the height of n-ary leetcoce.tree (max depth)
+     * Return the height of n-ary leetcode.tree (max depth)
      *
      * @param root
      * @return int

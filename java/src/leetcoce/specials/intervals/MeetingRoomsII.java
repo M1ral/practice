@@ -34,7 +34,7 @@ public class MeetingRoomsII {
             }
             minHeap.add(earliestEnd);
         }
-        // Note: MinHeap maintains all occupied rooms' end times
+        // Note: MinHeap maintains all occupied rooms' (end times)
         return minHeap.size();
     }
 }
