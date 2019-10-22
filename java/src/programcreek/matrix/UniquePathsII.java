@@ -1,7 +1,5 @@
 package programcreek.matrix;
 
-import leetcoce.matrix.MatrixUtils;
-
 public class UniquePathsII {
 
     public static void main(String[] args) {

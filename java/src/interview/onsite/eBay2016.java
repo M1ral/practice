@@ -1,6 +1,6 @@
 package interview.onsite;
 
-import leetcoce.linkedlist.pojo.ListNode;
+import leetcode.linkedlist.pojo.ListNode;
 
 public class eBay2016 {
 

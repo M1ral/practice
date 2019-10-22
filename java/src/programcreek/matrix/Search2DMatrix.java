@@ -1,6 +1,6 @@
 package programcreek.matrix;
 
-import static leetcoce.matrix.MatrixUtils.generateMatrix;
+import static leetcode.matrix.MatrixUtils.generateMatrix;
 
 public class Search2DMatrix {
 

@@ -1,9 +1,9 @@
 package programcreek.matrix;
 
-import leetcoce.matrix.SpiralOrder1;
+import leetcode.matrix.SpiralOrder1;
 
-import static leetcoce.matrix.MatrixUtils.generateMatrix;
-import static leetcoce.matrix.MatrixUtils.print2D;
+import static leetcode.matrix.MatrixUtils.generateMatrix;
+import static leetcode.matrix.MatrixUtils.print2D;
 
 public class SpiralMatrix {
 

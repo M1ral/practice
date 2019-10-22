@@ -2,7 +2,7 @@ package programcreek.matrix;
 
 import java.util.Arrays;
 
-import static leetcoce.matrix.MatrixUtils.generateMatrix;
+import static leetcode.matrix.MatrixUtils.generateMatrix;
 
 public class RotateMatrix {
 

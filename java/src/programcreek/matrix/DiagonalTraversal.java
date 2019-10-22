@@ -1,7 +1,7 @@
 package programcreek.matrix;
 
-import static leetcoce.matrix.MatrixUtils.generateMatrix;
-import static leetcoce.matrix.MatrixUtils.print2D;
+import static leetcode.matrix.MatrixUtils.generateMatrix;
+import static leetcode.matrix.MatrixUtils.print2D;
 
 public class DiagonalTraversal {
 
