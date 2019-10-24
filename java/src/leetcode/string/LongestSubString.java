@@ -12,6 +12,7 @@ public class LongestSubString {
         System.out.println("lengthOfLongestSubstring(\"abcabcd\") = " + lengthOfLongestSubstring("abcabcd"));
         System.out.println("lengthOfLongestSubstring(\"ababcdabc\") = " + lengthOfLongestSubstring("ababcdabc"));
         System.out.println("withKUniqueChars(\"ababcdabc\") = " + withKUniqueChars("ababcddddccabc", 2));
+        System.out.println("with2UniqueChars(\"ababcdabc\") = " + with2UniqueChars("ababcddddccabc"));
     }
 
     /**
@@ -61,12 +62,9 @@ public class LongestSubString {
         int max = Integer.MIN_VALUE;
 
         for (char ch : chars) {
-            if (map.containsKey(ch)) {
-                map.put(ch, map.get(ch) + 1);
-            } else {
-                map.put(ch, 1);
-            }
-
+            // 1. add current char to map
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            // 2. if map size > 2, remove chars until map size = 2
             while (map.size() > k) {
                 char toRemove = temp.charAt(0);
                 temp = temp.substring(1);
@@ -76,7 +74,7 @@ public class LongestSubString {
                     map.remove(toRemove);
                 }
             }
-
+            // 3. add current char to candidate and compute max
             temp += ch;
             if (temp.length() > max) {
                 result = temp;
@@ -87,4 +85,42 @@ public class LongestSubString {
         return result;
     }
 
+    /**
+     * Map (char -> count)
+     * 1. add ch to map
+     * 2. if map size > 2, remove chars until map size becomes 2
+     * 3. add ch to candidate and compute max length candidate
+     *
+     * @param s
+     * @return
+     */
+    public static int with2UniqueChars(String s) {
+        if (null == s || s.isEmpty()) {
+            return 0;
+        }
+
+        Map<Character, Integer> map = new HashMap<>();
+        char[] chars = s.toCharArray();
+        String candidate = "";
+        int max = Integer.MIN_VALUE;
+
+        for (char ch : chars) {
+            // 1. add current char to map
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            // 2. check map size and remove until map size = 2
+            while (map.size() > 2) {
+                char toRemove = candidate.charAt(0);
+                candidate = candidate.substring(1);
+                map.put(toRemove, map.get(toRemove) - 1);
+
+                if (map.get(toRemove) == 0) {
+                    map.remove(toRemove);
+                }
+            }
+            // 3. add current char to candidate and compute max length
+            candidate += ch;
+            max = Math.max(max, candidate.length());
+        }
+        return max;
+    }
 }

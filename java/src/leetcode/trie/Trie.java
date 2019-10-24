@@ -75,10 +75,7 @@ public class Trie {
      * @param index
      */
     public void insertRecursive(String word, TrieNode current, int index) {
-        if (null == current) {
-            return;
-        }
-        if (null == word || word.isEmpty()) {
+        if (null == current || null == word || word.isEmpty()) {
             return;
         }
         if (word.length() == index) {
