@@ -18,8 +18,7 @@ public class Compress {
             return null;
         }
 
-        char previous = s.charAt(0);
-        char current = s.charAt(0);
+        char previous = s.charAt(0), current;
         int count = 1;
         StringBuilder result = new StringBuilder();
 

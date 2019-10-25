@@ -1,12 +1,15 @@
 package leetcode.string;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class MinAddToMakeValidParenthesis {
 
     public static void main(String[] args) {
         System.out.println("minAddToMakeValid(\"())\") = " + minAddToMakeValid("())"));
         System.out.println("minAddToMakeValid(\"()))((\") = " + minAddToMakeValid("()))(("));
+        System.out.println("minAddToMakeValid(\"((((\") = " + minAddToMakeValid("(((("));
+        System.out.println("minAddToMakeValid(\"))))\") = " + minAddToMakeValid("))))"));
     }
 
     public static int minAddToMakeValid(String S) {
@@ -14,26 +17,22 @@ public class MinAddToMakeValidParenthesis {
             return 0;
         }
 
-        char open = '(';
-        char close = ')';
-        int extra = 0;
+        final char open = '(', close = ')';
         char[] sCharArr = S.toCharArray();
-        int openCount = 0, closeCount = 0;
-        Stack<Character> stack = new Stack();
+        Deque<Character> stack = new ArrayDeque<>();
+        int count = 0;
 
         for (char ch : sCharArr) {
             if (ch == open) {
-                openCount++;
                 stack.push(ch);
             } else if (ch == close) {
                 if (stack.isEmpty()) {
-                    extra++;
+                    count++;
                 } else {
-                    closeCount++;
                     stack.pop();
                 }
             }
         }
-        return Math.abs(openCount - closeCount) + extra;
+        return stack.size() + count;
     }
 }

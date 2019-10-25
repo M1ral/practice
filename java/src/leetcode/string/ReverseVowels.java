@@ -8,7 +8,7 @@ public class ReverseVowels {
     }
 
     /**
-     * Reverse vowels of given leetcoce.string input
+     * Reverse vowels of given leetcode.string input
      *
      * @param input
      * @return String

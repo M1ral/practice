@@ -3,6 +3,7 @@ package programcreek.linklistclassicproblems;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
+// Stack using 2 queues
 public class MyStack<E> {
 
     private Queue<E> q1;

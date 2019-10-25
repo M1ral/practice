@@ -143,7 +143,7 @@ public class ArraySum {
             }
         }
 
-        // get first k pairs from priority leetcoce.queue
+        // get first k pairs from priority leetcode.queue
         while (k != 0 && !pq.isEmpty()) {
             result.add(pq.poll().pair);
             k--;

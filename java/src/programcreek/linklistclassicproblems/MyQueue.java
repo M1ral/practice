@@ -2,6 +2,7 @@ package programcreek.linklistclassicproblems;
 
 import java.util.Stack;
 
+// Queue using 2 stacks
 public class MyQueue<E> {
     private int capacity;
     private int size;
