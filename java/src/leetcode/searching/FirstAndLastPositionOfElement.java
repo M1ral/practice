@@ -1,4 +1,4 @@
-package leetcode.array;
+package leetcode.searching;
 
 import java.util.Arrays;
 

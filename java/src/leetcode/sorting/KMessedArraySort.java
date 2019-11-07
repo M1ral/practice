@@ -1,9 +1,9 @@
-package leetcode.array;
+package leetcode.sorting;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
-public class MergeKMessedSortedArray {
+public class KMessedArraySort {
 
     public static void main(String[] args) {
         System.out.println(Arrays.toString(sortKMessedArray(new int[]{1, 4, 5, 2, 3, 7, 8, 6, 10, 9}, 2)));
@@ -24,13 +24,13 @@ public class MergeKMessedSortedArray {
         }
 
         for (i = k+1; i < arr.length; i++) {
-            arr[i - k + 1] = pq.remove();
+            arr[i - k - 1] = pq.remove();
             pq.add(arr[i]);
         }
 
         i = arr.length - k - 1;
         while (!pq.isEmpty()) {
-            arr[i] = pq.remove();
+            arr[i++] = pq.remove();
         }
 
         return arr;

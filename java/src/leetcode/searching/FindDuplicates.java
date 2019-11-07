@@ -1,4 +1,4 @@
-package leetcode.array;
+package leetcode.searching;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +29,6 @@ public class FindDuplicates {
 
         int[] result = new int[list.size()];
         int index = 0;
-
         for (int i : list)
             result[index++] = i;
 
@@ -39,7 +38,7 @@ public class FindDuplicates {
     public static boolean binarySearch(int target, int[] arr) {
         int start = 0, end = arr.length - 1;
         while (start <= end) {
-            int mid = start + (end - start) / 2;
+            int mid = (start + end) / 2;
             if (target == arr[mid]) {
                 return true;
             } else if (target < arr[mid]) {

@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class DailyTempratures {
 
     public static void main(String[] args) {
-        System.out.println("Arrays.toString(dailyTemperatures(new int[]{73, 74, 75, 71, 69, 72, 76, 73})) = " +
+        System.out.println("dailyTemperatures(73, 74, 75, 71, 69, 72, 76, 73) = " +
                 Arrays.toString(dailyTemperatures(new int[]{73, 74, 75, 71, 69, 72, 76, 73})));
     }
 
