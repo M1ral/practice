@@ -4,6 +4,8 @@ public class MinimumEditDistance {
 
     public static void main(String[] args) {
         System.out.println("minEditDistance(\"hosrse\", \"ors\") = " + minEditDistance("hosrse", "ors"));
+        System.out.println("minEditDistance(\"abcd\", \"abcf\") = " + minEditDistance("abcd", "abcf"));
+        System.out.println("minEditDistance(\"abcd\", \"adcf\") = " + minEditDistance("abcd", "adcf"));
     }
 
     // best explanation: https://www.youtube.com/watch?v=b6AGUjqIPsA
