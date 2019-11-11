@@ -1,6 +1,6 @@
-package interview.phone.twentyeighteen;
+package interview.phone.square;
 
-public class Square {
+public class ChildParent2018 {
     /**
      * input is in parent->child format
      * input: a->b;b->c;c->d;d->b

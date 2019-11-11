@@ -1,6 +1,6 @@
-package interview.phone.twentyeighteen;
+package interview.phone.apple;
 
-public class Apple {
+public class FunctionIterator2018 {
 
     public static void main(String[] args) {
         //Iterator<Integer> ints  = Iterator(1,2,3,4,5);

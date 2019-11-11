@@ -1,6 +1,6 @@
-package interview.phone.twentyeighteen;
+package interview.phone.lyft;
 
-public class Lyft {
+public class IntersectionIntervals2018 {
 
     // Return the intersections of the arrays
     // [1,4],[7,9],[1, 14]....[100, 102]

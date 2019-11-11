@@ -1,4 +1,4 @@
-package interview.phone.twentyninteen.amazon;
+package interview.phone.amazon;
 
 import java.util.HashSet;
 import java.util.Set;

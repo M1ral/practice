@@ -1,6 +1,6 @@
-package interview.phone.twentyeighteen;
+package interview.phone.pandora;
 
-public class Pandora {
+public class StringToInt2017 {
 
     // Convert given String to int number without using parse function
 

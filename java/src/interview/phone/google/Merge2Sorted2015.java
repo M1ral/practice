@@ -1,6 +1,6 @@
-package interview.phone.twentyeighteen;
+package interview.phone.google;
 
-public class Google {
+public class Merge2Sorted2015 {
 
     // 1. Count number of "1's" in given leetcoce.array and
     // 2. return new size of leetcoce.array if we were to remove all 1's

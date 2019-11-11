@@ -1,4 +1,4 @@
-package interview.phone.twentyeighteen;
+package interview.phone.facebook;
 
 /**
  * August 2018
@@ -13,7 +13,7 @@ package interview.phone.twentyeighteen;
  * Time - O(M*N), Space - O(1)
  * 2. If pre-processing is allowed, then what can be done to improve on time, if we can trade with space
  */
-public class Facebook {
+public class SATMatrix2018 {
     public static void main(String[] args) {
         System.out.println("Number of 1's in sub-leetcoce.matrix:" +
                 getNumberOfOnesInSubMatrix(
