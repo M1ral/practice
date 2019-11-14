@@ -1,4 +1,4 @@
-package leetcode.dp;
+package leetcode.dp.trappingrainwater;
 
 import java.util.PriorityQueue;
 

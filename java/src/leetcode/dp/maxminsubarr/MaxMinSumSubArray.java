@@ -1,4 +1,4 @@
-package leetcode.array;
+package leetcode.dp.maxminsubarr;
 
 public class MaxMinSumSubArray {
     public static void main(String[] args) {

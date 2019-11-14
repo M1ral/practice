@@ -1,4 +1,4 @@
-package leetcode.dp;
+package leetcode.dp.wordbreak;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package leetcode.dp;
+package leetcode.dp.trappingrainwater;
 
 /**
  * https://leetcode.com/problems/trapping-rain-water/solution/

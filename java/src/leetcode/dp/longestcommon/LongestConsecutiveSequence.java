@@ -1,4 +1,4 @@
-package leetcode.dp;
+package leetcode.dp.longestcommon;
 
 import java.util.HashSet;
 import java.util.Set;

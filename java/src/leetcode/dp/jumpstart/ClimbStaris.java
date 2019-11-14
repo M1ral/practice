@@ -1,4 +1,4 @@
-package leetcode.dp;
+package leetcode.dp.jumpstart;
 
 public class ClimbStaris {
 

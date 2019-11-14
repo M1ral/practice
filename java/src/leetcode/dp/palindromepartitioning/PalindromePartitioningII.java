@@ -1,4 +1,4 @@
-package leetcode.dp;
+package leetcode.dp.palindromepartitioning;
 
 public class PalindromePartitioningII {
 
