@@ -1,4 +1,4 @@
-package leetcode.dp.longestcommon;
+package leetcode.dp.lclis;
 
 import java.util.ArrayList;
 import java.util.Collections;

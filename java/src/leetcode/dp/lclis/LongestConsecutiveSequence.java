@@ -1,7 +1,8 @@
-package leetcode.dp.longestcommon;
+package leetcode.dp.lclis;
 
 import java.util.HashSet;
 import java.util.Set;
+
 
 public class LongestConsecutiveSequence {
 

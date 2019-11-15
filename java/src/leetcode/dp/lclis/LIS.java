@@ -1,11 +1,11 @@
-package leetcode.dp.longestcommon;
+package leetcode.dp.lclis;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static leetcode.dp.longestcommon.ElementsOfLIS.getElementsOfLIS;
+import static leetcode.dp.lclis.ElementsOfLIS.getElementsOfLIS;
 
 public class LIS {
 

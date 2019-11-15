@@ -13,6 +13,8 @@ public class LongestSubString {
         System.out.println("lengthOfLongestSubstring(\"ababcdabc\") = " + lengthOfLongestSubstring("ababcdabc"));
         System.out.println("withKUniqueChars(\"ababcdabc\") = " + withKUniqueChars("ababcddddccabc", 2));
         System.out.println("with2UniqueChars(\"ababcdabc\") = " + with2UniqueChars("ababcddddccabc"));
+        // https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/
+        System.out.println("with2UniqueChars(\"ababcdabc\") = " + withAtleastKRepeatingChars("ababcddddccabc"));
     }
 
     /**
@@ -122,5 +124,9 @@ public class LongestSubString {
             max = Math.max(max, candidate.length());
         }
         return max;
+    }
+
+    public static int withAtleastKRepeatingChars(String str) {
+        return 0;
     }
 }

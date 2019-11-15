@@ -1,4 +1,4 @@
-package leetcode.backtracking;
+package leetcode.dp.palindromepartitioning;
 
 import java.util.ArrayList;
 import java.util.Arrays;
