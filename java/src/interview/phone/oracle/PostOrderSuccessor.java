@@ -19,22 +19,16 @@ public class PostOrderSuccessor {
         return temp;
     }
 
-    public static Node postorderSuccessor(Node n)
-    {
+    public static Node postorderSuccessor(Node n) {
         // Root has no successor in postorder
-        // traversal
         if (n == null || n.parent == null)
             return null;
-
-        // If given node is right child of its
-        // parent or parent's right is empty, then
-        // parent is postorder successor.
+        // if node is its parent's right or parent's right is null
         Node parent = n.parent;
         if (parent.right == null || parent.right == n)
             return parent;
 
-        // In all other cases, find the leftmost
-        // child in right substree of parent.
+        // In all other cases, find deepest node in parent's right subtree
         return findPostOrderSuccessorInRightSubtree(n.parent.right);
     }
 

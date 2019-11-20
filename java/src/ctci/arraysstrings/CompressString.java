@@ -8,6 +8,9 @@ public class CompressString {
         System.out.println("compressString(\"aabbbbbcde\") = " + compressString("aabbbbbcde"));
         System.out.println("compressString(\"abcd\") = " + compressString("abcd"));
         System.out.println("compressString(\"abccdd\") = " + compressString("abccdd"));
+
+        // Asked by Amazon
+        System.out.println("compress(\"AAAABBBCCD\") = " + compress("AAAABBBCCD"));
     }
 
     public static String compressString(String input) {
@@ -30,9 +33,31 @@ public class CompressString {
             prev = ch;
             count = 1;
         }
-        sb.append(prev);
-        sb.append(count);
 
-        return sb.toString();
+
+        return sb.append(prev).append(count).toString();
+    }
+
+    public static String compress(String input) {
+        if (null == input || input.isEmpty()) {
+            return input;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        int count = 1;
+        char prev = input.charAt(0);
+
+        for (int i = 1; i < input.length(); i++) {
+            char current = input.charAt(i);
+            if (current == prev) {
+                count++;
+            } else {
+                sb.append(count).append(prev);
+                prev = current;
+                count = 1;
+            }
+        }
+
+        return sb.append(count).append(prev).toString();
     }
 }

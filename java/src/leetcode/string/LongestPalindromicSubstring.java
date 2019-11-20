@@ -20,7 +20,7 @@ public class LongestPalindromicSubstring {
             }
 
             // even (two characters in center)
-            temp = expand(input, i, i+1);
+            temp = expand(input, i, i + 1);
             if (temp.length() > longest.length()) {
                 longest = temp;
             }
@@ -36,6 +36,6 @@ public class LongestPalindromicSubstring {
             begin--;
             end++;
         }
-        return s.substring(begin+1, end);
+        return s.substring(begin + 1, end);
     }
 }

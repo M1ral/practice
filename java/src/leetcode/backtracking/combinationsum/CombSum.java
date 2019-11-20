@@ -5,6 +5,11 @@ import java.util.List;
 
 public class CombSum {
 
+    public static void main(String[] args) {
+        System.out.println("combinationSum2(new int[]{3,4,1,2,7,10}, 21) = " +
+                combinationSum2(new int[]{3, 4, 1, 2, 7, 10}, 21));
+    }
+
     public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> lists = new ArrayList();
         if (candidates == null || candidates.length == 0) {
