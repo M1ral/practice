@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 public class TrapRainWaterII {
 
     public static void main(String[] args) {
-        System.out.println("trapRainWater(new int[][]{[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]}) = " +
+        System.out.println("trapRainWater({[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]}) = " +
                 trapRainWater(new int[][]{{1, 4, 3, 1, 3, 2}, {3, 2, 1, 3, 2, 4}, {2, 3, 3, 2, 3, 1}}));
     }
 

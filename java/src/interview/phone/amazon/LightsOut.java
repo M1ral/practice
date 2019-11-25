@@ -3,7 +3,8 @@ package interview.phone.amazon;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UpdatePowerMinDaysAmazon {
+// https://leetcode.com/discuss/interview-question/422725/Google-or-Phone-Screen-or-Lights-Out-Puzzle
+public class LightsOut {
 
     public static void main(String[] args) {
         System.out.println(countMinDays(new int[][]{
