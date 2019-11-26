@@ -1,4 +1,4 @@
-package leetcode.dp.trappingrainwater;
+package leetcode.array.leftrightpointers.trappingrainwater;
 
 import java.util.PriorityQueue;
 

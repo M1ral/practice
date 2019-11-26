@@ -1,4 +1,4 @@
-package leetcode.slidingwindow;
+package leetcode.slidingwindow.consecutive;
 
 public class MaxConsecutiveOnesIII {
 
