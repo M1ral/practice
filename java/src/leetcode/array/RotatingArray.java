@@ -5,7 +5,7 @@ public class RotatingArray {
     public static void main(String[] args) {
         //rotateArray(new int[]{1,2,3,4,5,6,7}, 3);
         //rotateReverse(new int[]{1,2,3,4,5,6,7}, 3);
-        System.out.println("rotate leetcoce.array search: " + search(new int[]{10, 12, 13, 14, 15, 5, 6, 7, 8}, 25));
+        System.out.println("rotate leetcode.array search: " + search(new int[]{10, 12, 13, 14, 15, 5, 6, 7, 8}, 25));
     }
 
     /**

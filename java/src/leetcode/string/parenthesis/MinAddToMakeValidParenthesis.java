@@ -1,4 +1,4 @@
-package leetcode.string;
+package leetcode.string.parenthesis;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -1,4 +1,4 @@
-package leetcode.string;
+package leetcode.string.anagrams;
 
 public class ValidAnagrams {
 
