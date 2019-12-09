@@ -3,67 +3,81 @@ package interview.phone.microsoft;
 import java.util.Stack;
 
 public class EvaluateExpression2019 {
+
     public static void main(String[] args) throws Exception {
         System.out.println("compute(\"7 + 1 - 7 + 12\") = " + compute("7 + 1 - 7 + 12"));
+        System.out.println("compute(\"7 + 1 - 7 + 12\") = " + compute("(100 -  2) + 12"));
     }
 
-    public static int compute(String expression) throws Exception {
-        if (null == expression || expression.isEmpty()) {
+    public static int compute(String s) {
+        if (null == s || s.isEmpty()) {
             return 0;
         }
 
-        Stack<Character> operations = new Stack<>();
+        char[] tokens = s.toCharArray();
+        Stack<Character> ops = new Stack<>();
         Stack<Integer> values = new Stack<>();
 
-        char[] chars = expression.toCharArray();
-
-        for (int i = 0; i < chars.length; i++) {
-            char c = chars[i];
-
-            if (! ((c >= '0' && c <= '9') || (c == '+' || c == '-' || c == '*' || c == '/'))) {
-                continue;
+        for (int i = 0; i < tokens.length; i++) {
+            char c = tokens[i];
+            if (c == ' ') {
+                continue; // ignore spaces
             }
-
             // digit
-            if (c >= '0' && c <= '9') {
+            else if (Character.isDigit(c)) {
                 StringBuilder sb = new StringBuilder();
-                while (i < chars.length && c >= '0' && c <= '9') {
-                    sb.append(c);
-                    i++;
-                    if (i == chars.length) break;
-                    c = chars[i];
+                while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9') {
+                    sb.append(tokens[i++]);
                 }
                 values.push(Integer.parseInt(sb.toString()));
             }
-
-            // operand
-            if (c == '+' || c == '-' || c == '*' || c == '/') {
-                if (operations.isEmpty()) {
-                    operations.push(c);
-                } else {
-                    values.push(evaluate(operations.pop(), values.pop(), values.pop()));
-                    operations.push(c);
+            // handle brackets
+            else if (c == '(') {
+                ops.push(c);
+            } else if (c == ')') {
+                // compute expression
+                while (ops.peek() != '(') {
+                    values.push(apply(ops.pop(), values.pop(), values.pop()));
                 }
+                ops.pop();
+            }
+            // operators
+            else if (c == '+' || c == '-' || c == '*' || c == '/') {
+                while (!ops.isEmpty() && hasPrecedence(c, ops.peek())) {
+                    values.push(apply(ops.pop(), values.pop(), values.pop()));
+                }
+                ops.push(c);
             }
         }
 
-        while (! operations.isEmpty()) {
-            values.push(evaluate(operations.pop(), values.pop(), values.pop()));
+        while (!ops.isEmpty()) {
+            values.push(apply(ops.pop(), values.pop(), values.pop()));
         }
 
         return values.pop();
     }
 
-    private static int evaluate(char operand, int a, int b) throws Exception {
-        if (operand == '+') {
-            return a + b;
-        } else if (operand == '-') {
-            return b - a;
-        } else if (operand == '*') {
-            return a * b;
-        } else if (operand == '/') {
-            return b / a;
+    private static boolean hasPrecedence(char op1, char op2) {
+        if (op2 == '(' || op2 == ')') {
+            return false;
+        } else if ((op1 == '*' || op1 == '/') && (op2 == '+' || op2 == '-')) {
+            return false;
         }
-        throw new Exception("Invalid operation");
+        return true;
+    }
+
+    private static int apply(char operation, int b, int a) {
+        switch (operation) {
+            case '+':
+                return a + b;
+            case '-':
+                return a - b;
+            case '*':
+                return a * b;
+            case '/':
+                if (b == 0) throw new UnsupportedOperationException("Cannot divide by zero!");
+                return a / b;
+        }
+        return 0;
     }
 }

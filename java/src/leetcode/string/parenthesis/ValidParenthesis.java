@@ -18,19 +18,17 @@ public class ValidParenthesis {
      */
     public static boolean isValidParenthesis(String s) {
         if (null == s || s.isEmpty()) {
-            return false;
+            return true;
         }
 
-        String openBrackets = "({[";
-        Deque<Character> stack = new ArrayDeque<>();
+        Deque<Character> stack = new ArrayDeque<Character>();
+        char[] chars = s.toCharArray();
 
-        for (char ch : s.toCharArray()) {
-            if (openBrackets.indexOf(ch) > -1) {
+        for (char ch : chars) {
+            if (ch == '(' || ch == '{' || ch == '[') {
                 stack.push(ch);
             } else {
-                if (stack.isEmpty()) {
-                    return false;
-                }
+                if (stack.isEmpty()) return false;
                 if (ch == ')') {
                     if (stack.pop() != '(') return false;
                 } else if (ch == '}') {

@@ -1,5 +1,6 @@
 package leetcode.string;
 
+// https://leetcode.com/problems/implement-strstr/
 public class StrIndexOfAkaHaystackNeedle {
 
     public static void main(String[] args) {
@@ -14,11 +15,11 @@ public class StrIndexOfAkaHaystackNeedle {
      * @return int
      */
     public static int indexOf(String haystack, String needle) {
-        if (null == haystack || haystack.isEmpty()) {
+        if (null == haystack || null == needle) {
             return -1;
         }
-        if (null == needle || needle.isEmpty()) {
-            return -1;
+        if (needle.isEmpty()) {
+            return 0;
         }
         if (needle.length() > haystack.length()) {
             return -1;
