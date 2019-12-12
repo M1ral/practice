@@ -37,11 +37,7 @@ public class ReverseWords {
                 continue;
             }
 
-            output.append(word);
-
-            if (i > 0) {
-                output.append(" ");
-            }
+            output.append(word).append(" ");
         }
 
         return output.toString().trim();

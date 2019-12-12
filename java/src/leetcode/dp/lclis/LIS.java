@@ -55,7 +55,8 @@ public class LIS {
                     pile = ~pile;
                 }
 
-                int i = 0;
+                // binary search
+                /*int i = 0;
                 int j = list.size() - 1;
 
                 while (i < j) {
@@ -67,7 +68,8 @@ public class LIS {
                     }
                 }
 
-                list.set(j, num);
+                list.set(j, num);*/
+                list.set(pile, num);
             }
         }
 
