@@ -3,7 +3,8 @@ package leetcode.linkedlist;
 import leetcode.linkedlist.helper.ListNodeHelper;
 import leetcode.linkedlist.pojo.ListNode;
 
-public class Reverse {
+// https://leetcode.com/problems/reverse-linked-list/
+public class ReverseLinkedList {
 
     public static void main(String[] args) {
         // reverse

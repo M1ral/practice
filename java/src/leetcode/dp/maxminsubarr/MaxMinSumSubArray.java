@@ -7,7 +7,7 @@ public class MaxMinSumSubArray {
     }
 
     /**
-     * Find the max sum in a sequence of the leetcoce.array
+     * Find the max sum in a sequence of the leetcode.array
      *
      * @param A
      * @return int max sum

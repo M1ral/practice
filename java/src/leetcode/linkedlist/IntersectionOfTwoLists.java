@@ -3,8 +3,11 @@ package leetcode.linkedlist;
 import leetcode.linkedlist.helper.ListNodeHelper;
 import leetcode.linkedlist.pojo.ListNode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
+// https://leetcode.com/problems/intersection-of-two-linked-lists/
 public class IntersectionOfTwoLists {
 
     public static void main(String[] args) {
@@ -19,32 +22,27 @@ public class IntersectionOfTwoLists {
             return null;
         }
 
-        Stack<ListNode> stackA = new Stack<>();
-        Stack<ListNode> stackB = new Stack<>();
+        Deque<ListNode> stackA = new ArrayDeque();
+        Deque<ListNode> stackB = new ArrayDeque();
+        ListNode result = null;
 
-        while (null != headA) {
+        while (headA != null) {
             stackA.push(headA);
             headA = headA.next;
         }
-
-        while (null != headB) {
+        while (headB != null) {
             stackB.push(headB);
             headB = headB.next;
         }
 
-        ListNode p = null;
-        while (!stackA.isEmpty() && !stackB.isEmpty()) {
-            ListNode first = stackA.pop();
-            ListNode second = stackB.pop();
-
-            if (first == second) {
-                p = first;
-                continue;
-            } else {
+        while (! stackA.isEmpty() && !stackB.isEmpty()) {
+            if (! stackA.peek().equals(stackB.peek())) {
                 break;
             }
+            result = stackA.pop();
+            stackB.pop();
         }
 
-        return p;
+        return result;
     }
 }

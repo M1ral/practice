@@ -1,11 +1,12 @@
-package leetcode.linkedlist;
+package leetcode.linkedlist.merge;
 
 import leetcode.linkedlist.helper.ListNodeHelper;
 import leetcode.linkedlist.pojo.ListNode;
 
 import java.util.PriorityQueue;
 
-public class MergeKSorted {
+// https://leetcode.com/problems/merge-k-sorted-lists/
+public class MergeKSortedLists {
 
     public static void main(String[] args) {
         // merge k sorted linked lists

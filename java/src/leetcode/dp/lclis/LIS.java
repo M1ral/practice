@@ -7,6 +7,7 @@ import java.util.List;
 
 import static leetcode.dp.lclis.ElementsOfLIS.getElementsOfLIS;
 
+// https://leetcode.com/problems/longest-increasing-subsequence/
 public class LIS {
 
     // Based on Patience sorting
@@ -50,9 +51,9 @@ public class LIS {
             if (list.size() == 0 || num > list.get(list.size() - 1)) {
                 list.add(num);
             } else {
-                int pile = Collections.binarySearch(list, num);
-                if (pile < 0) {
-                    pile = ~pile;
+                int index = Collections.binarySearch(list, num);
+                if (index < 0) {
+                    index = ~index;
                 }
 
                 // binary search
@@ -69,7 +70,7 @@ public class LIS {
                 }
 
                 list.set(j, num);*/
-                list.set(pile, num);
+                list.set(index, num);
             }
         }
 
