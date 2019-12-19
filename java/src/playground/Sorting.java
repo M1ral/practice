@@ -8,6 +8,10 @@ public class Sorting {
         int[] arr = {2, 4, 6, 1, 9, 50, 18, 27, 0, 54};
         mergeSort(arr);
         System.out.println("Merge sort : arr = " + Arrays.toString(arr));
+
+        int[] arr2 = {2, 4, 6, 1, 9, 50, 18, 27, 0, 54};
+        mergeSort(arr2);
+        System.out.println("Quick sort : arr = " + Arrays.toString(arr2));
     }
 
     public static void mergeSort(int[] arr) {
