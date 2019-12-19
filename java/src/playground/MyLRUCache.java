@@ -1,4 +1,4 @@
-package programcreek.linklistclassicproblems;
+package playground;
 
 import java.util.HashMap;
 import java.util.Map;

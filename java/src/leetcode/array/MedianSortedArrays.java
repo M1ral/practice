@@ -3,8 +3,8 @@ package leetcode.array;
 public class MedianSortedArrays {
 
     public static void main(String[] args) {
-        System.out.println("median: " + findMedianSortedArraysBruteForce(new int[]{1,2}, new int[]{3}));
-        System.out.println("median: " + findMedianSortedArraysImprovised(new int[]{1,2}, new int[]{3}));
+        System.out.println("median: " + findMedianSortedArraysBruteForce(new int[]{1, 2}, new int[]{3}));
+        System.out.println("median: " + findMedianSortedArraysImprovised(new int[]{1, 2}, new int[]{3}));
     }
 
     public static double findMedianSortedArraysImprovised(int nums1[], int nums2[]) {
@@ -12,39 +12,37 @@ public class MedianSortedArrays {
         if (nums1.length > nums2.length) {
             return findMedianSortedArraysImprovised(nums2, nums1);
         }
-        int x = nums1.length;
-        int y = nums2.length;
 
-        int low = 0;
-        int high = x;
+        int x = nums1.length, y = nums2.length;
+        int low = 0, high = x;
+
         while (low <= high) {
-            int partitionX = (low + high)/2;
-            int partitionY = (x + y + 1)/2 - partitionX;
-
-            //if partitionX is 0 it means nothing is there on left side. Use -INF for maxX
-            //if partitionX is length of input then there is nothing on right side. Use +INF for minX
+            int px = (low + high) / 2, py = (x + y + 1) / 2 - px;
+            //if px is 0 it means nothing is there on left side. Use -INF for maxX
+            //if px is length of input then there is nothing on right side. Use +INF for minX
 
             // find max numbers in X and Y on the left partition
-            int maxX = (partitionX == 0) ? Integer.MIN_VALUE : nums1[partitionX - 1];
-            int maxY = (partitionY == 0) ? Integer.MIN_VALUE : nums2[partitionY - 1];
+            int maxX = (px == 0) ? Integer.MIN_VALUE : nums1[px - 1];
+            int maxY = (py == 0) ? Integer.MIN_VALUE : nums2[py - 1];
 
             // find min numbers in X and Y on the right partition
-            int minX = (partitionX == x) ? Integer.MAX_VALUE : nums1[partitionX];
-            int minY = (partitionY == y) ? Integer.MAX_VALUE : nums2[partitionY];
+            int minX = (px == x) ? Integer.MAX_VALUE : nums1[px];
+            int minY = (py == y) ? Integer.MAX_VALUE : nums2[py];
 
             if (maxX <= minY && maxY <= minX) {
                 // We have partitioned leetcoce.array at correct place
-                // Now get max of left elements and min of right elements to get the median in case of even length combined leetcoce.array size
-                // or get max of left for odd length combined leetcoce.array size.
+                // Now get max of left elements and min of right elements to get the median
+                // in case of even length combined array size
+                // or get max of left for odd length combined array size.
                 if ((x + y) % 2 == 0) {
-                    return ((double)Math.max(maxX, maxY) + Math.min(minX, minY))/2;
+                    return ((double) Math.max(maxX, maxY) + Math.min(minX, minY)) / 2;
                 } else {
-                    return (double)Math.max(maxX, maxY);
+                    return (double) Math.max(maxX, maxY);
                 }
-            } else if (maxX > minY) { //we are too far on right side for partitionX. Go on left side.
-                high = partitionX - 1;
-            } else { //we are too far on left side for partitionX. Go on right side.
-                low = partitionX + 1;
+            } else if (maxX > minY) { //we are too far on right side for px. Go on left side.
+                high = px - 1;
+            } else { //we are too far on left side for px. Go on right side.
+                low = px + 1;
             }
         }
 

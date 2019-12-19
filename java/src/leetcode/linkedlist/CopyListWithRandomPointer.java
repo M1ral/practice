@@ -18,7 +18,7 @@ public class CopyListWithRandomPointer {
         // loop 1. copy all the nodes
         Node node = head;
         while (node != null) {
-            map.put(node, new Node(node.val));
+            map.put(node, new Node(node.val, node.next, node.random));
             node = node.next;
         }
 
@@ -40,10 +40,6 @@ class Node {
     public Node random;
 
     public Node() {}
-
-    public Node(int _val) {
-        val = _val;
-    }
 
     public Node(int _val,Node _next,Node _random) {
         val = _val;

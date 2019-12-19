@@ -17,13 +17,40 @@ public class LongestSubString {
         System.out.println("with2UniqueChars(\"ababcdabc\") = " + withAtleastKRepeatingChars("ababcddddccabc"));
     }
 
+    public static int lengthOfLongestSubstring(String s) {
+        if (null == s || s.isEmpty()) {
+            return 0;
+        }
+
+        Map<Character, Integer> map = new HashMap();
+        char[] chars = s.toCharArray();
+        int start = 0, end = s.length(), max = Integer.MIN_VALUE;
+        String temp = "";
+
+        while (start < end) {
+            char ch = chars[start++];
+            temp += ch;
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+
+            while (map.get(ch) > 1) {
+                char toRemove = temp.charAt(0);
+                temp = temp.substring(1);
+                map.put(toRemove, map.get(toRemove) - 1);
+            }
+
+            max = Math.max(max, temp.length());
+        }
+
+        return max;
+    }
+
     /**
      * Return the length of the longest substring that has non repeating characters
      *
      * @param s
      * @return int
      */
-    public static int lengthOfLongestSubstring(String s) {
+    public static int lengthOfLongestSubstringWithSet(String s) {
         if (null == s || s.isEmpty()) {
             return -1;
         }

@@ -13,8 +13,8 @@ public class playground {
                 Arrays.toString(rotateArray(new int[]{1, 2, 3, 4, 5}, 3)));
         findElementPairsThatSumToGivenNumber(new int[]{1, 4, 7, 8}, 11);
         printTable(12);
-        System.out.println(Arrays.toString(getFollowingElements(new Integer[]{1,2,3,4}, 2)));
-        System.out.println(Arrays.toString(getFollowingElements(new String[]{"a","b","c","d"}, "d")));
+        System.out.println(Arrays.toString(getFollowingElements(new Integer[]{1,2,3,4}, 1)));
+        System.out.println(Arrays.toString(getFollowingElements(new String[]{"a","b","c","d"}, "b")));
     }
 
     public static int binarySearch(int[] arr, int val) {

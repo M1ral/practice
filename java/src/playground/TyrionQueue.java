@@ -1,4 +1,4 @@
-package programcreek.linklistclassicproblems;
+package playground;
 
 public class TyrionQueue<E> {
     private E[] arr;
