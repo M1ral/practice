@@ -6,7 +6,8 @@ public class TopKFrequentElements {
 
     // https://leetcode.com/problems/top-k-frequent-elements/
     public static void main(String[] args) {
-
+        System.out.println("topKFrequentElements({1,1,1,2,2,3}, 2) = " +
+                Arrays.toString(topKFrequentElements(new int[]{1, 1, 1, 2, 2, 3}, 2).toArray()));
     }
 
     public static List<Integer> topKFrequentElements(int[] nums, int k) {

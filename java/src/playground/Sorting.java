@@ -2,6 +2,8 @@ package playground;
 
 import java.util.Arrays;
 
+import static leetcode.sorting.QuickSort.swap;
+
 public class Sorting {
 
     public static void main(String[] args) {
@@ -10,10 +12,13 @@ public class Sorting {
         System.out.println("Merge sort : arr = " + Arrays.toString(arr));
 
         int[] arr2 = {2, 4, 6, 1, 9, 50, 18, 27, 0, 54};
-        mergeSort(arr2);
+        quickSort(arr2, 0, arr2.length - 1);
         System.out.println("Quick sort : arr = " + Arrays.toString(arr2));
     }
 
+    /**
+     * Merge sort
+     */
     public static void mergeSort(int[] arr) {
         if (null == arr || arr.length == 0) {
             return;
@@ -51,5 +56,32 @@ public class Sorting {
 
         for (k = start; k <= end; k++)
             arr[k] = temp[k];
+    }
+
+    /**
+     * Quick Sort
+     */
+    private static void quickSort(int[] arr, int start, int end) {
+        if (start < end) {
+            int location = partition(arr, start, end);
+            quickSort(arr, start, location - 1);
+            quickSort(arr, location + 1, end);
+        }
+    }
+
+    private static int partition(int[] arr, int start, int end) {
+        int l = start, r = end, pivot = arr[l];
+        while (l < r) {
+            while (l <= r && arr[l] <= pivot)
+                l++;
+            while (l <= r && arr[r] > pivot)
+                r--;
+
+            if (l < r)
+                swap(arr, l, r);
+        }
+
+        swap(arr, pivot, r);
+        return r;
     }
 }

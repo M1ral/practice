@@ -56,18 +56,19 @@ public class Google2018 {
         return helper(word1, word2, new HashSet<String>());
     }
 
-    private static boolean helper(String w1, String w2, Set<String> set) {
+    private static boolean helper(String w1, String w2, Set<String> visited) {
         if (dict.get(w1).contains(w2)) {
             return true;
         }
-        set.add(w1);
+
+        visited.add(w1);
         Set<String> values = dict.get(w1);
 
         for (String v : values) {
-            if (set.contains(v)) {
+            if (visited.contains(v)) {
                 continue;
             }
-            return helper(v, w2, set);
+            return helper(v, w2, visited);
         }
         return false;
     }

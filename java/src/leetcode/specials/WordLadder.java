@@ -50,7 +50,7 @@ public class WordLadder {
 
 
     /**
-     * add adjacent vertex to the leetcoce.queue.
+     * add adjacent vertex to the leetcode.queue.
      *
      * @param word
      * @param wordSet

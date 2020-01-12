@@ -6,7 +6,7 @@ import leetcode.linkedlist.pojo.ListNode;
 public class ReverseInKGroups {
 
     public static void main(String[] agrs) {
-        ListNode head = ListNodeHelper.generateLinkedList(new int[]{1,2,3,4,5,6,7});
+        ListNode head = ListNodeHelper.generateLinkedList(new int[]{1, 2, 3, 4, 5, 6, 7});
         System.out.println("reverseKGroups(head, 3) = " + reverseKGroups(head, 3));
     }
 

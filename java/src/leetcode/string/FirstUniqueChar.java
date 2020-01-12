@@ -1,5 +1,6 @@
 package leetcode.string;
 
+// https://leetcode.com/problems/first-unique-character-in-a-string/
 public class FirstUniqueChar {
 
     public static void main(String[] args) {

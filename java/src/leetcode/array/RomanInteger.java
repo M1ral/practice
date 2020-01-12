@@ -1,4 +1,4 @@
-package leetcode.specials;
+package leetcode.array;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,24 +12,26 @@ import java.util.Map;
  * C             100
  * D             500
  * M             1000
- *
+ * <p>
  * For example, two is written as II in Roman numeral, just two one's added together.
  * Twelve is written as, XII, which is simply X + II. The number twenty seven is written as XXVII, which is XX + V + II.
- *
+ * <p>
  * Roman numerals are usually written largest to smallest from left to right.
  * However, the numeral for four is not IIII. Instead, the number four is written as IV.
  * Because the one is before the five we subtract it making four. The same principle applies
  * o the number nine, which is written as IX. There are six instances where subtraction is used:
- *
+ * <p>
  * I can be placed before V (5) and X (10) to make 4 and 9.
  * X can be placed before L (50) and C (100) to make 40 and 90.
  * C can be placed before D (500) and M (1000) to make 400 and 900.
  * Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
  */
+// https://leetcode.com/problems/roman-to-integer/
 public class RomanInteger {
 
     public static void main(String[] args) {
         System.out.println("romanToInt(\"IV\") = " + romanToInt("IV"));
+        System.out.println("intToRoman(45) = " + intToRoman(45));
     }
 
     /**
@@ -63,5 +65,27 @@ public class RomanInteger {
             }
         }
         return num;
+    }
+
+    // https://leetcode.com/problems/integer-to-roman/
+    public static String intToRoman(int num) {
+        if (num <= 0) {
+            return "";
+        }
+
+        int[] values = {1000, 900, 500, 400, 100,
+                90, 50, 40, 10, 9, 5, 4, 1};
+        String[] strs = {"M", "CM", "D", "CD", "C",
+                "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < values.length; i++) {
+            while (num >= values[i]) {
+                num -= values[i];
+                sb.append(strs[i]);
+            }
+        }
+
+        return sb.toString();
     }
 }
