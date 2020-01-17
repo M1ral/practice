@@ -7,8 +7,8 @@ import java.util.List;
 public class CombSumII {
 
     public static void main(String[] args) {
-        System.out.println("combinationSum2(new int[]{3,4,1,2,7,10}, 21) = " +
-                combinationSum2(new int[]{3, 4, 1, 2, 7, 10}, 21));
+        System.out.println("combinationSum2(new int[]{10,1,2,7,6,1,5}, 8) = " +
+                combinationSum2(new int[]{10, 1, 2, 7, 6, 1, 5}, 8));
     }
 
     public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
@@ -27,16 +27,15 @@ public class CombSumII {
         } else if (remain == 0) {
             lists.add(new ArrayList(temp));
             return;
-        } else {
-            for (int i = start; i < nums.length; i++) {
-                if (i > start && nums[i] == nums[i-1]) continue;
-                // choose
-                temp.add(nums[i]);
-                // explore
-                backtrack(nums, lists, temp, remain - nums[i], i+1); // i+1 - because same element cannot be used again
-                // un-choose
-                temp.remove(temp.size() - 1);
-            }
+        }
+        for (int i = start; i < nums.length; i++) {
+            if (i > start && nums[i] == nums[i - 1]) continue;
+            // choose
+            temp.add(nums[i]);
+            // explore
+            backtrack(nums, lists, temp, remain - nums[i], i + 1); // i+1 - because same element cannot be used again
+            // un-choose
+            temp.remove(temp.size() - 1);
         }
     }
 }

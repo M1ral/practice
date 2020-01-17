@@ -1,39 +1,42 @@
 package leetcode.backtracking.combinationsum;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+// https://leetcode.com/problems/combination-sum/
 public class CombSum {
 
     public static void main(String[] args) {
-        System.out.println("combinationSum2(new int[]{3,4,1,2,7,10}, 21) = " +
-                combinationSum2(new int[]{3, 4, 1, 2, 7, 10}, 21));
+        System.out.println("combinationSum({2,3,6,7}, 7) = " +
+                combinationSum(new int[]{2, 3, 6, 7}, 7));
     }
 
-    public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        List<List<Integer>> lists = new ArrayList();
-        if (candidates == null || candidates.length == 0) {
-            return lists;
+    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+        if (null == candidates || candidates.length == 0) {
+            return Collections.emptyList();
         }
-        backtrack(candidates, lists, new ArrayList<Integer>(), target, 0);
+
+        List<List<Integer>> lists = new ArrayList<>();
+        backtrack(lists, new ArrayList<Integer>(), candidates, target, 0);
         return lists;
     }
 
-    public static void backtrack(int[] nums, List<List<Integer>> lists, List<Integer> temp, int remain, int start) {
-        if (remain < 0) {
+    private static void backtrack(List<List<Integer>> lists, List<Integer> list,
+                           int[] candidates, int target, int start) {
+        if (target < 0) {
             return;
-        } else if (remain == 0) {
-            lists.add(new ArrayList(temp));
+        } else if (target == 0) { // when target is found
+            lists.add(new ArrayList(list));
             return;
-        } else {
-            for (int i = 0; i < nums.length; i++) {
-                // choose
-                temp.add(nums[i]);
-                // explore
-                backtrack(nums, lists, temp, remain - nums[i], i); // i - because same element can be used again
-                // un-choose
-                temp.remove(temp.size() - 1);
-            }
+        }
+        for (int i = start; i < candidates.length; i++) {
+            // choose
+            list.add(candidates[i]);
+            // explore
+            backtrack(lists, list, candidates, target - candidates[i], i);
+            // unchoose
+            list.remove(list.size() - 1);
         }
     }
 }

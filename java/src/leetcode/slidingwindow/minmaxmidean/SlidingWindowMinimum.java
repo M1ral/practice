@@ -1,4 +1,4 @@
-package leetcode.slidingwindow.minmax;
+package leetcode.slidingwindow.minmaxmidean;
 
 // https://leetcode.com/problems/minimum-window-substring/
 public class SlidingWindowMinimum {
