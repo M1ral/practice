@@ -17,10 +17,18 @@ public class Tree {
 
     /**
      * Creates a binary search leetcoce.tree with values 1-8
+     *
      * @return TreeNode root of the leetcoce.tree
      */
     public static TreeNode createDummyTree() {
-        return createBST(new int[] {1,2,3,4,5,6,7,8});
+        return createBST(new int[]{1, 2, 3, 4, 5, 6, 7, 8});
+    }
+
+    public static void printInorder(TreeNode root) {
+        if (null == root) return;
+        printInorder(root.left);
+        System.out.println(root.val);
+        printInorder(root.right);
     }
 
     /**
@@ -35,11 +43,12 @@ public class Tree {
         }
 
         // create and return leetcoce.tree
-        return addToTree(arr, 0, arr.length-1);
+        return addToTree(arr, 0, arr.length - 1);
     }
 
     /**
      * Inflate leetcoce.tree with given leetcoce.array values
+     *
      * @param arr
      * @param start
      * @param end
@@ -50,17 +59,16 @@ public class Tree {
             return null;
         }
 
-        int mid = (start + end)/2;
+        int mid = start + (end - start) / 2;
         TreeNode treeNode = new TreeNode(arr[mid]);
-        treeNode.left = addToTree(arr, start, mid-1);
-        treeNode.right = addToTree(arr, mid+1, end);
+        treeNode.left = addToTree(arr, start, mid - 1);
+        treeNode.right = addToTree(arr, mid + 1, end);
 
         return treeNode;
     }
 
     /**
      * Create BST from leetcoce.array iteratively
-     *
      */
 
     public static TreeNode createBSTIteratively(int[] arr) {
@@ -96,7 +104,7 @@ public class Tree {
      * Check whether given leetcoce.tree is a binary search leetcoce.tree
      * Uses inorder traversal technique where we always traverse the next element in
      * the binary search leetcoce.tree
-     *
+     * <p>
      * Keep track of previous element and compare it with the current to see if
      * they satisfy the condition current < previous
      *
@@ -125,30 +133,32 @@ public class Tree {
 
         return true; // all good
     }
+
     // helper static variable
     public static TreeNode previous;
 
 
     /**
      * Flatten the leetcoce.tree as a linked list (in-place)
-     *     1
-     *    / \
-     *   2   5
-     *  / \   \
+     * 1
+     * / \
+     * 2   5
+     * / \   \
      * 3   4   6
-     *
+     * <p>
      * output:
      * 1
-     *  \
-     *   2
-     *    \
-     *     3
-     *      \
-     *       4
-     *        \
-     *         5
-     *          \
-     *           6
+     * \
+     * 2
+     * \
+     * 3
+     * \
+     * 4
+     * \
+     * 5
+     * \
+     * 6
+     *
      * @param root
      */
     public static void flatten(TreeNode root) {
